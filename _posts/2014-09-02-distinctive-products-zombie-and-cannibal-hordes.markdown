@@ -8,6 +8,8 @@ date: '2014-09-02 21:07:36'
 
 I like to think that I know a little something about surviving a variety of world-ending scenarios. A childhood of computer games and films has left me prepared for zombie outbreaks, alien invasions and even a planet run by apes. One of the things I’ve learnt about surviving a catastrophe is that groups of things that look and act the same are generally something to be scared of.
 
+<!---->
+
 A single zombie by itself? Not that scary – it’s a problem easily solved by a chainsaw to the back of the head. A sole alien? Not scary (unless you’re stuck on spaceship with little hope of rescue) -- maybe the alien is even friendly and just wants to go home. An ape rides up on horseback holding a spear -- weird, but not that scary. On the other hand, a horde of zombies wandering towards your house is never good. Thousands of aliens falling from the sky rarely ends well. A hundred apes riding a hundred horses towards your gated-community is going to make you wish you had built a taller gate.
 
 Unfortunately, this sameness and the fear that goes with it isn’t something I just have to face in the cinema. I see it every time I go shopping. Let’s take a look in the children’s shampoo aisle:

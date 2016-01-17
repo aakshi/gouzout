@@ -1,9 +1,9 @@
-baseurl: /tufte-jekyll 
-title: Tufte
-subtitle: Content-centric blogging
-author: clay harmon
+baseurl:
+title: Gouzout
+subtitle: Posts by Richard Shaw
+author: Richard Shaw
 simple_search: http://google.com/search
-description: A Jekyll theme for content-rich sites
+description: 
 name: tufte
 markdown: Kramdown
 kramdown:  
@@ -11,7 +11,7 @@ kramdown:
   syntax_highlighter: rouge
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 highlighter: rouge
-permalink: /articles/:short_year/:title
+permalink: /post/:title
 timezone: America/New_York
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
@@ -21,7 +21,6 @@ post:
 page:
   template: _page.txt
   extension: md
-editor: gvim
 git:
   branch: master
 transfer:

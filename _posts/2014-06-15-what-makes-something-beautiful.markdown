@@ -10,7 +10,7 @@ After all, if beauty is entirely subjective, a product of individual preference,
 
 To understand how people see beauty today, I analyzed a 1000 pictures [tagged #beautiful on Instagram](http://iconosquare.com/tag/beautiful/). 
 
-##Describing pictures
+## Describing pictures
 
 To analyze 1000 pictures by hand is error prone and time consuming. So to get an overview of what people considered beautiful, I tagged the images using a [machine vision API created by Alchemy](http://www.alchemyapi.com/products/features/image-tagging/). The machine vision API works somewhat like facial recognition software. It looks at an image and returns a list of tags, saying what it thinks the image contains. For example, [this image](http://demo1.alchemyapi.com/images/vision/emaxfpo.jpg) is 99% likely to contain a cat, 57% likely to contain an animal and so on. 
 
@@ -64,7 +64,7 @@ We can combine the data from the bubble chart and the network graph, along with 
 
 In the network graph above, the size of the circles and text show how many times a tag was used, like in the bubble chart. The lines show which tags are mentioned together, while the thickness of the lines represents how often the tags were mentioned together. The colors show the results of our segmentation. There are clusters of images around beautiful people, animals, flowers, sky and buildings.
 
-##Who are the beautiful people?
+## Who are the beautiful people?
 
 Pictures of people seem to dominate what people perceive as beautiful. But what makes these people beautiful? Is it their hair? Their eyes? What is it?
 
@@ -76,7 +76,7 @@ The plot below shows an analysis of the different properties of the beautiful pe
 
 The plot shows us that an image of a person is more likely to be #beautiful if they’re young, white, females with a happy facial expression. The YWFH’s accounted for a full 23% of all images of #beautiful people, significantly higher than any other group. It also doesn’t hurt if you’re a brunette. Brunettes account for 72% of #beautiful people overall, and young, white, females with a happy facial expression and long brunette hair make up 10% of #beautiful people overall. 
 
-##Jolie laide
+## Jolie laide
 I’m disappointed. I never expected beauty to entirely be beholden to the beholder, but I never expected to find this level of conformity. Almost half of #beautiful pictures on Instagram are of people, and about 1 in 4 of those people photographed display the same features. While typically it’s the media that has promoted a certain standards of beauty, it’s not the media outlets posting these photos. 
 
 [Over 90% of Instagram users or people aged 18-35](http://www.businessinsider.com/instagram-demographics-2013-12). Part of me (the part that watched a lot of Bill Hicks at college, wastes its time watching reruns of House and follows @neinquarterly) wants to conclude the narcissism and conformity displayed on Instagram are a malaise of a generation. 
@@ -96,7 +96,7 @@ While differences between languages wouldn’t be surprising, what is surprising
 So was suffering through high school English literature worth it? Is “beauty is in the eye of the beholder”? If it is, then with certain people in certain places a lot of us look through the same eye.
 
 
-##Resources
+## Resources
 
 * Bubble chart code: http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa
 * Network graph code: http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64

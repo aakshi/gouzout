@@ -15,6 +15,6 @@ height: 709px;
 border: 1px solid #DEDEDE;"
 src="https://richshaw.github.io/loyaltyprogrammes/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 
-##Resources
+## Resources
 
-* Visualization code and data: https://github.com/richshaw/loyaltyprogrammes
+* [Visualization code and data on Github](https://github.com/richshaw/loyaltyprogrammes)
