@@ -1,0 +1,13 @@
+---
+layout: post
+title: Chicken wings, context and emotion
+date: '2014-05-17 17:11:54'
+---
+
+I’m sitting at my desk writing this on a Friday morning, but I’m already thinking about Friday night. Why? Sometimes we eat chicken wings on Friday. Much like with beer, coffee, wine and cigarettes, my first experience with chicken wings wasn’t gratifying; I can still feel my face grimacing from their spicy, vinegary taste. But since then, I’ve learned to love chicken wings like I love all my vices. For me, chicken wings have to be eaten in a certain type of place on a certain type of Friday. It has to be early, around 7 pm, in a dive bar with the lowest of lights. It has to be after a busy week, just before a busy weekend. The chicken wings should be piled high, and the napkins should be thin and plentiful. Fortunately, I’m not alone in feeling a particular way about food and place.
+
+[A recent study looking at people’s emotional responses to food in different consumption contexts](http://www.deepdyve.com/lp/elsevier/emotion-responses-under-evoked-consumption-contexts-a-focus-on-the-Pj1j2VRXtz) highlighted how, where and when we eat affects how we feel about eating. When and where we eat food automatically evokes a mood and feelings about the appropriateness of what we’re about to consume. These feelings then directly affect how we interpret our enjoyment of the food. 
+
+The research found that how people felt about a food changed depending on the time and place it’s consumed. For example, I’m less enthusiastic about the prospect of eating chicken wings on a Sunday than a Friday. The amount of emotional change caused by when and where food is eaten also depends on the type of food. For example, there’s a bigger difference between how I feel eating chicken wings for breakfast or dinner than how I feel about eating an apple for breakfast or dinner. Interestingly, the researchers also found that people who frequently eat a particular type of food didn’t show a stronger emotional intensity toward that food than people who eat it less frequently. For example, as someone who doesn’t eat many kiwis, I probably feel just as strongly about kiwis as someone who eats them every day.         
+
+I liked this research study because of its relevancy to the work I do with food businesses. It took into account the role of emotion and context, two things that all businesses and brands need to study more closely.  Additionally, the finding that how often people ate a particular food had no effect on how they felt about it is a gentle reminder that brands can’t assume consumption frequency is a benefit. Just because some people eat a product more often than others doesn’t necessarily mean they are a fan of the brand.     

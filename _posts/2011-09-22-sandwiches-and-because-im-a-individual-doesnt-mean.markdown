@@ -1,0 +1,13 @@
+---
+layout: post
+title: Sandwiches and because I'm a individual, doesn't mean I'm a raging individualist
+date: '2011-09-22 20:42:00'
+---
+
+It all started in high school, it was the 90’s and I was sitting through a lesson on niche marketing and it was all good. By focusing on a niche market you can give your customers what they really want, and possibly charge a premium for it. With lots of businesses focusing on niches people would have more choice and get more of the things they want. Which is great we’re all individuals and this allows our individual tastes to be met. Then there was micro-marketing that was a lot like niche marketing accept it was more precise, more tailored to the particular needs of the people deemed to be in that micro-market. Quickly followed by one-to-one marketing where each individual person got exactly what they want, and I was cool with this. Facebook and Amazon send a endless procession of targeted ads just for me. I was fine with this, I had brought into Anderson’s Long Tail, I was convinced that I and everyone else wanted more choice & more products that demonstrated my individuality.
+
+That was until I was faced with a American deli sandwich counter. A counter showing smorgasbord of sandwich based treats. There was no doubt in my mind that the deli could have made my perfect sandwich out of the 7 different types of bread, dozen meats and endless array of salads. But I was paralyzed, I was paralyzed by choice. I didn’t want to go to the effort of having to tell the guy behind the counter what my perfect sandwich would be. I just wanted a sandwich any sandwich, I didn’t care, there are other things I would rather be doing.
+
+This go me thinking about choice and individuality and when I wanted it and when I didn’t. I can’t speak for the rest of humanity but, I like choice, a tailored service, something individual to me, when it’s easy or it’s about something I care about. When making a decision is hard or is something I just don’t care about that much, having lots of choice, having something individual is annoying, confusing & frustrating.
+
+A lot of brands and businesses are talking about how social media and mobile will allow them to tailor their offer to individual consumers, and for some brands, products, services, this is the right thing to do. It will work great. But for other businesses people just want you to get the job done. Some people just want to grab a sandwich and get on with their lives. Don’t force these people to make to many choices, it will just annoy them.
