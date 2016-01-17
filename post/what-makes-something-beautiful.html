@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gouzout - What makes something #beautiful?</title>
+  <meta name="description" content="I think it was in high school, in an English Literature lesson, someone was droning on about how “beauty is in the eye of the beholder”, how beauty is an exp...">
+  <link rel="stylesheet" href="/css/tufte.css">	
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
+  
+  <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
+  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  <link rel="canonical" href="/post/what-makes-something-beautiful">
+  <link rel="alternate" type="application/rss+xml" title="Gouzout" href="/feed.xml" />
+</head>
+
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+    <nav class="group">
+	<a href="/"><img class="badge" src="/assets/r.png" alt="CH"></a>
+	
+		
+  	
+		
+		    
+		      <a href="/">Posts</a>
+		    
+	    
+  	
+		
+		    
+		      <a href="/css/main.css"></a>
+		    
+	    
+  	
+		
+  	
+	</nav>
+</header>
+    <article class="group">
+      <h1>What makes something #beautiful?</h1>
+<p class="subtitle">June 15, 2014</p>
+
+
+<p>I think it was in high school, in an English Literature lesson, someone was droning on about how “beauty is in the eye of the beholder”, how beauty is an experience of the individual, that anything can be beautiful if someone considers it so. In some ways this is a nice idea, a free and easy way to understand the beauty around us, but is it true?</p>
+
+<p>After all, if beauty is entirely subjective, a product of individual preference, why is it so consistent? Scarlett Johansson is universally seen as beautiful, as are sunsets, vistas and diamonds.</p>
+
+<p>To understand how people see beauty today, I analyzed a 1000 pictures <a href="http://iconosquare.com/tag/beautiful/">tagged #beautiful on Instagram</a>.</p>
+
+<h2 id="describing-pictures">Describing pictures</h2>
+
+<p>To analyze 1000 pictures by hand is error prone and time consuming. So to get an overview of what people considered beautiful, I tagged the images using a <a href="http://www.alchemyapi.com/products/features/image-tagging/">machine vision API created by Alchemy</a>. The machine vision API works somewhat like facial recognition software. It looks at an image and returns a list of tags, saying what it thinks the image contains. For example, <a href="http://demo1.alchemyapi.com/images/vision/emaxfpo.jpg">this image</a> is 99% likely to contain a cat, 57% likely to contain an animal and so on.</p>
+
+<p>So what was contained within our 1000 #beautiful images?</p>
+
+<iframe style="width: 100%;
+height: 500px;
+border: 1px solid #DEDEDE;" src="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<p>The bubble chart above shows the number of times each tag occurred. I don’t want to conclude that, as humans, we are a race of narcissists, but we do have a lot of beautiful people, but also some sunsets, sky and sport.</p>
+
+<p>We can also look at an average of images for different tags to see if there’s any consistency in color and composition of the images.</p>
+
+<p><img src="/assets/beautiful-average/person.jpg" alt="What is beautiful? Average person" /></p>
+<p style="text-align: center;">Average #beautiful person</p>
+
+<p><img src="/assets/beautiful-average/girl.jpg" alt="What is beautiful? Average girl" /></p>
+<p style="text-align: center;">Average #beautiful girl</p>
+
+<p><img src="/assets/beautiful-average/model.jpg" alt="What is beautiful? Average model" /></p>
+<p style="text-align: center;">Average #beautiful model</p>
+
+<p><img src="/assets/beautiful-average/sport.jpg" alt="What is beautiful? Average sport" /></p>
+<p style="text-align: center;">Average #beautiful sport</p>
+
+<p><img src="/assets/beautiful-average/nature.jpg" alt="What is beautiful? Average nature" /></p>
+<p style="text-align: center;">Average #beautiful nature</p>
+
+<p><img src="/assets/beautiful-average/flower.jpg" alt="What is beautiful? Average flower" /></p>
+<p style="text-align: center;">Average #beautiful flower</p>
+
+<p><img src="/assets/beautiful-average/sunset.jpg" alt="What is beautiful? Average sunset" /></p>
+<p style="text-align: center;">Average #beautiful sunset</p>
+
+<p><img src="/assets/beautiful-average/cat.jpg" alt="What is beautiful? Average cat" /></p>
+<p style="text-align: center;">Average #beautiful cat</p>
+
+<p>The average images were created by taking the average pixel color, for each pixel across all the images of a tag. Much like numeric averages, average images don’t tell us much about the overall structure of the data but give us a single point of reference for commonalities within the data. In this case the average images give us a feel for the common composition and colors used within the images.</p>
+
+<p>While the bubble chart and averages tell us about the common tags, it doesn’t tell us anything about how the tags relate to each other. What is related to “people”? What sports are included in “sport”?</p>
+
+<iframe style="width: 100%;
+height: 500px;
+border: 1px solid #DEDEDE;" src="http://bl.ocks.org/richshaw/raw/b7f99f539e2a2546ab64/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<p>The network graph above shows how the tags fit together. Each circle represents a tag, and a line is draw between tags that are mentioned together. We can see that beautiful flowers include “orchid,” “poppy” and “dandelion” and sports like “football,” “golf” and even “wrestling” have beautiful moments. We can also look at the overall structure of the graph. You’ll see that there are four clusters of circles, one centering on people, one on animals, another on nature and a fourth on buildings (pulled close to nature by the sun and the sky).</p>
+
+<p>We can combine the data from the bubble chart and the network graph, along with a <a href="http://arxiv.org/pdf/physics/0602124.pdf">segmentation</a> to give us a complete overview of the tags.</p>
+
+<p><img src="/assets/beautifulgraph.svg" alt="What is beautiful? Graph" /></p>
+
+<p>In the network graph above, the size of the circles and text show how many times a tag was used, like in the bubble chart. The lines show which tags are mentioned together, while the thickness of the lines represents how often the tags were mentioned together. The colors show the results of our segmentation. There are clusters of images around beautiful people, animals, flowers, sky and buildings.</p>
+
+<h2 id="who-are-the-beautiful-people">Who are the beautiful people?</h2>
+
+<p>Pictures of people seem to dominate what people perceive as beautiful. But what makes these people beautiful? Is it their hair? Their eyes? What is it?</p>
+
+<p>To find out, I recruited a team of humans to analyze the images tagged with “person.” Each analyst had to answer a sequence of questions describing the properties of the images: Does the image contain a person? (The computer could have tagged incorrectly.) How long is their hair? What color is it? And so on.</p>
+
+<p>The plot below shows an analysis of the different properties of the beautiful people images and how they relate to each other. The properties toward the center of the plot are the ones mentioned most frequently, and the properties that are close to each other tend to appear together.</p>
+
+<p><img src="/assets/MCA.svg" alt="Mulitple Correspondence Analysis Plot" /></p>
+
+<p>The plot shows us that an image of a person is more likely to be #beautiful if they’re young, white, females with a happy facial expression. The YWFH’s accounted for a full 23% of all images of #beautiful people, significantly higher than any other group. It also doesn’t hurt if you’re a brunette. Brunettes account for 72% of #beautiful people overall, and young, white, females with a happy facial expression and long brunette hair make up 10% of #beautiful people overall.</p>
+
+<h2 id="jolie-laide">Jolie laide</h2>
+<p>I’m disappointed. I never expected beauty to entirely be beholden to the beholder, but I never expected to find this level of conformity. Almost half of #beautiful pictures on Instagram are of people, and about 1 in 4 of those people photographed display the same features. While typically it’s the media that has promoted a certain standards of beauty, it’s not the media outlets posting these photos.</p>
+
+<p><a href="http://www.businessinsider.com/instagram-demographics-2013-12">Over 90% of Instagram users or people aged 18-35</a>. Part of me (the part that watched a lot of Bill Hicks at college, wastes its time watching reruns of House and follows @neinquarterly) wants to conclude the narcissism and conformity displayed on Instagram are a malaise of a generation.</p>
+
+<p>But that’s it’s not that simple. That conclusion is too broad. Aristotle, Plato, Kant and Locke all failed to develop a definitive definition of beauty because beauty doesn’t have a single definition, but nor is it entirely subjective.</p>
+
+<p>The best explanations of what make sometime beautiful are relative. <a href="http://www.amazon.com/gp/product/0199229759/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0199229759&amp;linkCode=as2&amp;tag=richshaw-20">In Beauty, Roger Scruton</a> sees beauty as a rational judgment by the individual, that rationality has to draw up experience on the world around them. Similarly, <a href="http://www.amazon.com/gp/product/0415979927/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0415979927&amp;linkCode=as2&amp;tag=richshaw-20">Crispin Sartwell in Six Names of Beauty</a> sees beauty defined by the relationship between the observer, the observed and the environment around them.</p>
+
+<p>With this in mind, the #beautiful people of Instagram seem less malevolent. Uploading a picture to Instagram is a social interaction between the uploader and the other members of Instagram. Social interactions are rarely neutral. They have a purpose.</p>
+
+<p>For some, Instagram is a game of “likes.” The more “likes” your image gets, the better, and using popular tags like #beautiful can help with that. Others use Instagram as a way to display their perfectly curated life to friends, and #beautiful is a statement of an aspirational self-image.</p>
+
+<p>Instagram photos are a product of the platform and the sample I used for the research. Instagram is a US-based company and is popular on its home turf. I also sampled images that were tagged #beautiful not <a href="http://iconosquare.com/tag/precioso/">#precioso</a>, <a href="http://iconosquare.com/tag/belo/">#belo</a> or <a href="http://iconosquare.com/tag/%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4/">아름다운</a>. If I had looked at beautiful in different languages, I would have discovered something different.</p>
+
+<p>While differences between languages wouldn’t be surprising, what is surprising is the amount of homogeneity within our US leading, english tagged #beautiful images.</p>
+
+<p>So was suffering through high school English literature worth it? Is “beauty is in the eye of the beholder”? If it is, then with certain people in certain places a lot of us look through the same eye.</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li>Bubble chart code: http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa</li>
+  <li>Network graph code: http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64</li>
+  <li>Pretty tables: http://bl.ocks.org/richshaw/raw/187f2f6df9b3f5ed55b8/</li>
+  <li>Data: https://drive.google.com/folderview?id=0B268p6viJlBMaUxmUlF6TDZiOUU&amp;usp=sharing</li>
+</ul>
+
+
+
+
+    </article>
+    <span class="print-footer">What makes something #beautiful? - June 15, 2014 - Richard Shaw</span>
+    <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="mailto:richard.shaw -at- bnsly.com"><span class="icon-mail"></span></a></li>    
+    
+      <li>
+        <a href="//www.twitter.com/richshaw"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="//github.com/richshaw"><span class="icon-github"></span></a>
+      </li>
+    
+      <li>
+        <a href="/feed"><span class="icon-feed"></span></a>
+      </li>
+      
+  </ul>
+<div class="credits">
+<span>&copy; 2016 &nbsp;&nbsp;RICHARD SHAW</span></br> <br>
+</div>  
+</footer>
+  </body>
+</html>
