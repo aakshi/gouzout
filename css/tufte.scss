@@ -57,24 +57,33 @@ html{
 .mathblock{
   font-size: 1.3rem;
 }
+
+/* Links: replicate underline that clears descenders */
 a {
-  color: $contrast-color;
-  text-decoration: none;
+   color: $contrast-color;
+   text-decoration: none;
 }
 
-p > a { @if $link-style == underline
-    {
-      color: $text-color;
-      text-decoration: none;
-      border-bottom: 1px solid #777;
-      padding-bottom: 1px;
-    }
-    @else
-    {
-      color: $contrast-color;
-      text-decoration: none;
-    }
-  }
+
+p a:link {
+   background: -webkit-linear-gradient($bg-color, $bg-color), -webkit-linear-gradient($bg-color, $bg-color), -webkit-linear-gradient(#333, #333);
+   background: linear-gradient($bg-color, $bg-color), linear-gradient($bg-color, $bg-color), linear-gradient(#333, #333);
+   -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+   -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+   background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
+   background-repeat: no-repeat, no-repeat, repeat-x;
+   text-shadow: 0.03em 0 $bg-color, -0.03em 0 $bg-color, 0 0.03em $bg-color, 0 -0.03em $bg-color, 0.06em 0 $bg-color, -0.06em 0 $bg-color, 0.09em 0 $bg-color, -0.09em 0 $bg-color, 0.12em 0 $bg-color, -0.12em 0 $bg-color, 0.15em 0 $bg-color, -0.15em 0 $bg-color;
+   background-position: 0% 93%, 100% 93%, 0% 93%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) { p a:link { background-position-y: 87%, 87%, 87%; } }
+
+p a:link::selection { text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+                    background: #b4d5fe; }
+
+p a:link::-moz-selection { text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
+                         background: #b4d5fe; }
+
 
 body { width: 87.5%;
        margin-left: auto;
@@ -89,11 +98,12 @@ body { width: 87.5%;
 // --------- Typography stuff -----------//
 // added rational line height and margins ala http://webtypography.net/intro/
 
-h1 { font-weight: 400;
-     margin-top: 1.568rem;
-     margin-bottom: 1.568rem;
-     font-size: 2.5rem;
-     line-height: 0.784; }
+h1 { 
+  font-weight: 400;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 3.2rem;
+  line-height: 1.1;}
 
 h2 { font-style: italic;
      font-weight: 400;
@@ -236,6 +246,10 @@ figure.fullwidth figcaption { float: left; margin-right: 0%; margin-left: 36%; }
 
 img { max-width: 100%; }
 
+p img {
+  background-color: #fff;
+}
+
 .sidenote, .marginnote { float: right;
                          clear: right;
                          margin-right: -60%;
@@ -344,8 +358,9 @@ header > nav.group, body footer {
   padding-top: 2rem;
 }
 
-nav.group a.active:before{ content:"\0003c\000a0";} // escaped unicode for the carats and then a space on active menu links
-nav.group a.active:after{ content:"\000a0\0003e" ;}
+nav.group a.active {
+ border-bottom: 4px double #666;
+}
 
 header > nav  a{
   font-size: 1.2rem;
@@ -359,10 +374,12 @@ header > nav  a{
   float: left;
   margin-top: 0;
   margin-bottom: 0;
-  padding-right: 2rem;
-  //margin-left: 1rem;
+  margin-right: 2rem;
   vertical-align: baseline;
 }
+
+
+
 header > nav a img{
   height: 5rem;
   position: relative;
@@ -401,6 +418,14 @@ body.full-width, .content-listing, ul.content-listing li.listing{ width: 90%;
        padding: 0% 5%;
 
 }
+
+ul.content-listing, ul.content-listing li.listing {
+  padding:0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
+  margin:0;
+}
+
 .full-width article p{
   width: 90%;
 }
@@ -591,3 +616,14 @@ hr.slender {
   content: "\e60e";
 }
 /*-- End of Icomoon icon font section --*/
+
+/* Custom */
+figure.fullwidth > iframe {
+  border: 0 none;
+  width: 100%;
+}
+
+.image-quilt > .image-quilt-item {
+  /*margin:0;*/
+}
+

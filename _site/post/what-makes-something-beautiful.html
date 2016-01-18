@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gouzout - What makes something #beautiful?</title>
-  <meta name="description" content="I think it was in high school, in an English Literature lesson, someone was droning on about how “beauty is in the eye of the beholder”, how beauty is an exp...">
+  <meta name="description" content="I think it was in high school, in an English Literature lesson, someone was talking about how “beauty is in the eye of the beholder”, how beauty is an experi...">
   <link rel="stylesheet" href="/css/tufte.css">	
   <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
   
@@ -14,6 +14,9 @@
   <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
   
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/1.4.3/packery.pkgd.min.js"></script>
   
   <link rel="canonical" href="/post/what-makes-something-beautiful">
   <link rel="alternate" type="application/rss+xml" title="Gouzout" href="/feed.xml" />
@@ -48,7 +51,7 @@
 <p class="subtitle">June 15, 2014</p>
 
 
-<p>I think it was in high school, in an English Literature lesson, someone was droning on about how “beauty is in the eye of the beholder”, how beauty is an experience of the individual, that anything can be beautiful if someone considers it so. In some ways this is a nice idea, a free and easy way to understand the beauty around us, but is it true?</p>
+<p>I think it was in high school, in an English Literature lesson, someone was talking about how “beauty is in the eye of the beholder”, how beauty is an experience of the individual, that anything can be beautiful if someone considers it so. In some ways this is a nice idea, a free and easy way to understand the beauty around us, but is it true?</p>
 
 <p>After all, if beauty is entirely subjective, a product of individual preference, why is it so consistent? Scarlett Johansson is universally seen as beautiful, as are sunsets, vistas and diamonds.</p>
 
@@ -60,37 +63,23 @@
 
 <p>So what was contained within our 1000 #beautiful images?</p>
 
-<iframe style="width: 100%;
-height: 500px;
-border: 1px solid #DEDEDE;" src="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<figure class="fullwidth">
+<iframe style="height:500px;" src="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</figure>
 
 <p>The bubble chart above shows the number of times each tag occurred. I don’t want to conclude that, as humans, we are a race of narcissists, but we do have a lot of beautiful people, but also some sunsets, sky and sport.</p>
 
 <p>We can also look at an average of images for different tags to see if there’s any consistency in color and composition of the images.</p>
 
-<p><img src="/assets/beautiful-average/person.jpg" alt="What is beautiful? Average person" /></p>
-<p style="text-align: center;">Average #beautiful person</p>
-
-<p><img src="/assets/beautiful-average/girl.jpg" alt="What is beautiful? Average girl" /></p>
-<p style="text-align: center;">Average #beautiful girl</p>
-
-<p><img src="/assets/beautiful-average/model.jpg" alt="What is beautiful? Average model" /></p>
-<p style="text-align: center;">Average #beautiful model</p>
-
-<p><img src="/assets/beautiful-average/sport.jpg" alt="What is beautiful? Average sport" /></p>
-<p style="text-align: center;">Average #beautiful sport</p>
-
-<p><img src="/assets/beautiful-average/nature.jpg" alt="What is beautiful? Average nature" /></p>
-<p style="text-align: center;">Average #beautiful nature</p>
-
-<p><img src="/assets/beautiful-average/flower.jpg" alt="What is beautiful? Average flower" /></p>
-<p style="text-align: center;">Average #beautiful flower</p>
-
-<p><img src="/assets/beautiful-average/sunset.jpg" alt="What is beautiful? Average sunset" /></p>
-<p style="text-align: center;">Average #beautiful sunset</p>
-
-<p><img src="/assets/beautiful-average/cat.jpg" alt="What is beautiful? Average cat" /></p>
-<p style="text-align: center;">Average #beautiful cat</p>
+<figure class="fullwidth image-quilt js-packery" data-packery-options="{ &quot;itemSelector&quot;: &quot;.image-quilt-item&quot;, &quot;gutter&quot;: 0 }">
+    <div class="image-quilt-item"><img alt="Average #beautiful person" src="/assets/beautiful-average/person.jpg" /></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful girl" src="/assets/beautiful-average/girl.jpg" /></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful model" src="/assets/beautiful-average/model.jpg" /></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful sport" src="/assets/beautiful-average/sport.jpg" /></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful nature" src="/assets/beautiful-average/nature.jpg" /></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful sunset" src="/assets/beautiful-average/sunset.jpg" /></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful cat" src="/assets/beautiful-average/cat.jpg" /></div>
+</figure>
 
 <p>The average images were created by taking the average pixel color, for each pixel across all the images of a tag. Much like numeric averages, average images don’t tell us much about the overall structure of the data but give us a single point of reference for commonalities within the data. In this case the average images give us a feel for the common composition and colors used within the images.</p>
 

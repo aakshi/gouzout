@@ -4,7 +4,7 @@ title: 'What makes something #beautiful?'
 date: '2014-06-15 19:20:00'
 ---
 
-I think it was in high school, in an English Literature lesson, someone was droning on about how “beauty is in the eye of the beholder”, how beauty is an experience of the individual, that anything can be beautiful if someone considers it so. In some ways this is a nice idea, a free and easy way to understand the beauty around us, but is it true?
+I think it was in high school, in an English Literature lesson, someone was talking about how “beauty is in the eye of the beholder”, how beauty is an experience of the individual, that anything can be beautiful if someone considers it so. In some ways this is a nice idea, a free and easy way to understand the beauty around us, but is it true?
 
 After all, if beauty is entirely subjective, a product of individual preference, why is it so consistent? Scarlett Johansson is universally seen as beautiful, as are sunsets, vistas and diamonds. 
 
@@ -16,37 +16,23 @@ To analyze 1000 pictures by hand is error prone and time consuming. So to get an
 
 So what was contained within our 1000 #beautiful images?
 
-<iframe style="width: 100%;
-height: 500px;
-border: 1px solid #DEDEDE;" src="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<figure class='fullwidth'>
+<iframe style="height:500px;" src="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</figure>
 
 The bubble chart above shows the number of times each tag occurred. I don’t want to conclude that, as humans, we are a race of narcissists, but we do have a lot of beautiful people, but also some sunsets, sky and sport.
 
 We can also look at an average of images for different tags to see if there’s any consistency in color and composition of the images. 
 
-![What is beautiful? Average person](/assets/beautiful-average/person.jpg)
-<p style='text-align: center;'>Average #beautiful person</p>
-
-![What is beautiful? Average girl](/assets/beautiful-average/girl.jpg)
-<p style='text-align: center;'>Average #beautiful girl</p>
-
-![What is beautiful? Average model](/assets/beautiful-average/model.jpg)
-<p style='text-align: center;'>Average #beautiful model</p>
-
-![What is beautiful? Average sport](/assets/beautiful-average/sport.jpg)
-<p style='text-align: center;'>Average #beautiful sport</p>
-
-![What is beautiful? Average nature](/assets/beautiful-average/nature.jpg)
-<p style='text-align: center;'>Average #beautiful nature</p>
-
-![What is beautiful? Average flower](/assets/beautiful-average/flower.jpg)
-<p style='text-align: center;'>Average #beautiful flower</p>
-
-![What is beautiful? Average sunset](/assets/beautiful-average/sunset.jpg)
-<p style='text-align: center;'>Average #beautiful sunset</p>
-
-![What is beautiful? Average cat](/assets/beautiful-average/cat.jpg)
-<p style='text-align: center;'>Average #beautiful cat</p>
+<figure class="fullwidth image-quilt js-packery" data-packery-options='{ "itemSelector": ".image-quilt-item", "gutter": 0 }'>
+    <div class="image-quilt-item"><img alt="Average #beautiful person" src="/assets/beautiful-average/person.jpg"></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful girl" src="/assets/beautiful-average/girl.jpg"></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful model" src="/assets/beautiful-average/model.jpg"></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful sport" src="/assets/beautiful-average/sport.jpg"></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful nature" src="/assets/beautiful-average/nature.jpg"></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful sunset" src="/assets/beautiful-average/sunset.jpg"></div>
+    <div class="image-quilt-item"><img alt="Average #beautiful cat" src="/assets/beautiful-average/cat.jpg"></div>
+</figure>
 
 The average images were created by taking the average pixel color, for each pixel across all the images of a tag. Much like numeric averages, average images don’t tell us much about the overall structure of the data but give us a single point of reference for commonalities within the data. In this case the average images give us a feel for the common composition and colors used within the images.     
 
