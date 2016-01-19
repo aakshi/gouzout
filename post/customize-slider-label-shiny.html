@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gouzout - How to customize slide labels in Shiny</title>
+  <meta name="description" content="Shiny offers a great selection of arguments to help you customize the slider input control. If you need to add a prefix or suffix to a label it’s easy to do ...">
+  <link rel="stylesheet" href="/css/tufte.css">	
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
+  
+  <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
+  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/1.4.3/packery.pkgd.min.js"></script>
+  
+  <link rel="canonical" href="/post/customize-slider-label-shiny">
+  <link rel="alternate" type="application/rss+xml" title="Gouzout" href="/feed.xml" />
+</head>
+
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+    <nav class="group">
+	<a href="/"><img class="badge" src="/assets/r.png" alt="CH"></a>
+	
+		
+  	
+		
+		    
+		      <a href="/">Posts</a>
+		    
+	    
+  	
+		
+		    
+		      <a href="/css/main.css"></a>
+		    
+	    
+  	
+		
+  	
+	</nav>
+</header>
+    <article class="group">
+      <h1>How to customize slide labels in shiny</h1>
+<p class="subtitle">January 18, 2016</p>
+
+
+<p><a href="http://shiny.rstudio.com/">Shiny</a> offers a great selection of arguments to help you customize the slider input control. If you need to add a prefix or suffix to a label it’s easy to do in R, but if you need to do more complicated reformating of labels then you need to work with Javascript.</p>
+
+<h2 id="example">Example</h2>
+
+<p>We have a dataset that labels each 30 minute period during the day from 0 to 47 and we want to convert these integer to a time range. For example 1 = 12:30am to 1:00am.</p>
+
+<p><label for="mn-id-example-table" class="margin-toggle"> ⊕</label><input type="checkbox" id="mn-id-example-table" class="margin-toggle" /><span class="marginnote"><em>Table 1</em>: Example dataset </span></p>
+<div class="table-wrapper">
+<table>
+    <thead>
+        <tr><th>sex</th><th>agegrp</th><th>activity</th><th>b0</th><th>b1</th><th>b2</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>male</td><td>5</td><td>10101</td><td>0.919</td><td>0.932</td><td>0.947</td></tr>
+        <tr><td>female</td><td>3</td><td>10101</td><td>0.897</td><td>0.921</td><td>0.944</td></tr>
+        <tr><td>female</td><td>5</td><td>10101</td><td>0.891</td><td>0.918</td><td>0.944</td></tr>
+        <tr><td>female</td><td>2</td><td>10101</td><td>0.887</td><td>0.911</td><td>0.944</td></tr>
+        <tr><td>male</td><td>4</td><td>10101</td><td>0.892</td><td>0.916</td><td>0.936</td></tr>
+        <tr><td>female</td><td>4</td><td>10101</td><td>0.867</td><td>0.9</td><td>0.93</td></tr>
+        <tr><td>female</td><td>1</td><td>10101</td><td>0.888</td><td>0.906</td><td>0.929</td></tr>
+        <tr><td>male</td><td>3</td><td>10101</td><td>0.883</td><td>0.904</td><td>0.927</td></tr>
+        <tr><td>female</td><td>0</td><td>10101</td><td>0.817</td><td>0.846</td><td>0.896</td></tr>
+    </tbody>
+</table>
+</div>
+
+<h2 id="custom-js">Custom JS</h2>
+
+<p>Looking at the Shiny source code we can see that Shiny uses the <a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html">Ion Range Slider</a> JQuery component.</p>
+
+<p>The Ion Range Slider has a number of additional settings we can hack into. To customize the rendering of the labels we’re going to use the Ion Range Slider <code class="highlighter-rouge">prettify</code> setting which allows us to use a callback function to render our labels.</p>
+
+<p>Create a Javascript file in your Shiny project called <code class="highlighter-rouge">slider.js</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">now_bin</span> <span class="o">=</span> <span class="nx">now</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// bin number, 30-minute bins</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">now</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">now_bin</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**
+  Function to convert bin numbers 0 to 47 
+  to time segments in words.
+
+  This is an example you can use whatever 
+  function you like to render your labels.  
+  */</span>
+  <span class="kd">function</span> <span class="nx">binNumberToWords</span><span class="p">(</span><span class="nx">bin_num</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">hour</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">bin_num</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">bin_num</span> <span class="o">==</span> <span class="nx">now_bin</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s1">'Right Now'</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">hour</span> <span class="o">&gt;</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ampm_start</span> <span class="o">=</span> <span class="s2">"pm"</span><span class="p">;</span>
+    <span class="nx">ampm_finish</span> <span class="o">=</span> <span class="s2">"pm"</span><span class="p">;</span>
+    <span class="nx">hour</span> <span class="o">-=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">hour</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ampm_start</span> <span class="o">=</span> <span class="s2">"am"</span><span class="p">;</span>
+    <span class="nx">ampm_finish</span> <span class="o">=</span> <span class="s2">"am"</span><span class="p">;</span>
+    <span class="nx">hour</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">hour</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ampm_start</span> <span class="o">=</span> <span class="s2">"pm"</span><span class="p">;</span>
+    <span class="nx">ampm_finish</span> <span class="o">=</span> <span class="s2">"pm"</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">ampm_start</span> <span class="o">=</span> <span class="s2">"am"</span><span class="p">;</span>
+    <span class="nx">ampm_finish</span> <span class="o">=</span> <span class="s2">"am"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">remainder</span> <span class="o">=</span> <span class="nx">bin_num</span> <span class="o">%</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">remainder</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">time_span</span> <span class="o">=</span> <span class="nx">hour</span> <span class="o">+</span> <span class="s2">":30"</span><span class="o">+</span><span class="nx">ampm_start</span><span class="o">+</span><span class="s2">"-"</span> <span class="o">+</span> <span class="nx">hour</span> <span class="o">+</span> <span class="s2">":59"</span><span class="o">+</span><span class="nx">ampm_finish</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">time_span</span> <span class="o">=</span> <span class="nx">hour</span> <span class="o">+</span> <span class="s2">":00"</span><span class="o">+</span><span class="nx">ampm_start</span><span class="o">+</span><span class="s2">"-"</span> <span class="o">+</span> <span class="nx">hour</span> <span class="o">+</span> <span class="s2">":29"</span><span class="o">+</span><span class="nx">ampm_finish</span><span class="p">;</span> 
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="nx">time_span</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="cm">/**
+  Tweak ionRangeSlider options
+  prettify tells the ionRangeSlider to 
+  use our binNumberToWords function to
+  render the slider labels
+  */</span>
+  <span class="kd">var</span> <span class="nx">slider</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#timeOfDay"</span><span class="p">).</span><span class="nx">ionRangeSlider</span><span class="p">({</span>
+    <span class="na">prettify</span><span class="p">:</span> <span class="nx">binNumberToWords</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">})</span>
+</code></pre>
+</div>
+
+<p>Next we need to add our custom Javascript to our Shiny app using the <code class="highlighter-rouge">includeScript</code> function. To your <code class="highlighter-rouge">ui.R</code> file add.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+
+<span class="n">shinyUI</span><span class="p">(</span><span class="n">fluidPage</span><span class="p">(</span>  
+  <span class="c1"># Adds custom JS to head of Shiny HTML page
+</span>  <span class="n">tags</span><span class="o">$</span><span class="n">head</span><span class="p">(</span><span class="n">includeScript</span><span class="p">(</span><span class="s1">'slider.js'</span><span class="p">)),</span>
+<span class="p">))</span>
+</code></pre>
+</div>
+
+<p>Finally, the range slide component needs to be added the Shiny <ui.r> file.</ui.r></p>
+
+<p><label for="mn-id-r-code-2" class="margin-toggle"> ⊕</label><input type="checkbox" id="mn-id-r-code-2" class="margin-toggle" /><span class="marginnote"><em>Note:</em> the first argument for the sliderInput <em>timeOfDay</em> matches the id used in the Javascript file. </span></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span>
+<span class="n">shinyUI</span><span class="p">(</span><span class="n">fluidPage</span><span class="p">(</span>  
+  <span class="c1"># Adds custom JS to head of Shiny HTML page
+</span>  <span class="n">tags</span><span class="o">$</span><span class="n">head</span><span class="p">(</span><span class="n">includeScript</span><span class="p">(</span><span class="s1">'slider.js'</span><span class="p">)),</span>
+
+  <span class="n">verticalLayout</span><span class="p">(</span>
+    <span class="n">wellPanel</span><span class="p">(</span>
+      <span class="n">sliderInput</span><span class="p">(</span><span class="s2">"timeOfDay"</span><span class="p">,</span>
+                  <span class="s2">"Time of day:"</span><span class="p">,</span>
+                  <span class="n">min</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+                  <span class="n">max</span> <span class="o">=</span> <span class="m">47</span><span class="p">,</span>
+                  <span class="n">value</span> <span class="o">=</span> <span class="m">24</span><span class="p">),</span>
+      <span class="n">selectInput</span><span class="p">(</span><span class="s2">"sex"</span><span class="p">,</span>
+                  <span class="s2">"Sex:"</span><span class="p">,</span>
+                  <span class="n">c</span><span class="p">(</span><span class="s2">"Males"</span> <span class="o">=</span> <span class="s2">"male"</span><span class="p">,</span>
+                    <span class="s2">"Females"</span> <span class="o">=</span> <span class="s2">"female"</span><span class="p">),</span>
+                  <span class="n">selected</span> <span class="o">=</span> <span class="s2">"male"</span><span class="p">),</span>
+      <span class="n">selectInput</span><span class="p">(</span><span class="s2">"ageGrp"</span><span class="p">,</span> <span class="s2">"Age:"</span><span class="p">,</span>
+                  <span class="n">c</span><span class="p">(</span><span class="s2">"15 to 24"</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+                    <span class="s2">"25 to 34"</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+                    <span class="s2">"35 to 44"</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span>
+                    <span class="s2">"45 to 54"</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+                    <span class="s2">"55 to 64"</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span>
+                    <span class="s2">"65+"</span> <span class="o">=</span> <span class="m">5</span><span class="p">),</span>
+                  <span class="n">selected</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+    <span class="p">),</span>
+  <span class="p">),</span>
+<span class="p">))</span>
+</code></pre>
+</div>
+
+<p>See the full implementation of this technique on <a href="https://github.com/richshaw/timeUse">Github</a>.</p>
+
+
+
+
+    </article>
+    <span class="print-footer">How to customize slide labels in Shiny - January 18, 2016 - Richard Shaw</span>
+    <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="mailto:richard.shaw -at- bnsly.com"><span class="icon-mail"></span></a></li>    
+    
+      <li>
+        <a href="//www.twitter.com/richshaw"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="//github.com/richshaw"><span class="icon-github"></span></a>
+      </li>
+    
+      <li>
+        <a href="/feed"><span class="icon-feed"></span></a>
+      </li>
+      
+  </ul>
+<div class="credits">
+<span>&copy; 2016 &nbsp;&nbsp;RICHARD SHAW</span></br> <br>
+</div>  
+</footer>
+  </body>
+</html>
