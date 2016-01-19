@@ -5,9 +5,169 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Jan 2016 18:50:30 -0500</pubDate>
-    <lastBuildDate>Sun, 17 Jan 2016 18:50:30 -0500</lastBuildDate>
+    <pubDate>Mon, 18 Jan 2016 21:08:00 -0500</pubDate>
+    <lastBuildDate>Mon, 18 Jan 2016 21:08:00 -0500</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>How to customize slide labels in Shiny</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://shiny.rstudio.com/&quot;&gt;Shiny&lt;/a&gt; offers a great selection of arguments to help you customize the slider input control. If you need to add a prefix or suffix to a label it’s easy to do in R, but if you need to do more complicated reformating of labels then you need to work with Javascript.&lt;/p&gt;
+
+&lt;h2 id=&quot;example&quot;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;We have a dataset that labels each 30 minute period during the day from 0 to 47 and we want to convert these integer to a time range. For example 1 = 12:30am to 1:00am.&lt;/p&gt;
+
+&lt;p&gt;&lt;label for=&quot;mn-id-example-table&quot; class=&quot;margin-toggle&quot;&gt; ⊕&lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-id-example-table&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;marginnote&quot;&gt;&lt;em&gt;Table 1&lt;/em&gt;: Example dataset &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;sex&lt;/th&gt;&lt;th&gt;agegrp&lt;/th&gt;&lt;th&gt;activity&lt;/th&gt;&lt;th&gt;b0&lt;/th&gt;&lt;th&gt;b1&lt;/th&gt;&lt;th&gt;b2&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.919&lt;/td&gt;&lt;td&gt;0.932&lt;/td&gt;&lt;td&gt;0.947&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.897&lt;/td&gt;&lt;td&gt;0.921&lt;/td&gt;&lt;td&gt;0.944&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.891&lt;/td&gt;&lt;td&gt;0.918&lt;/td&gt;&lt;td&gt;0.944&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.887&lt;/td&gt;&lt;td&gt;0.911&lt;/td&gt;&lt;td&gt;0.944&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.892&lt;/td&gt;&lt;td&gt;0.916&lt;/td&gt;&lt;td&gt;0.936&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.867&lt;/td&gt;&lt;td&gt;0.9&lt;/td&gt;&lt;td&gt;0.93&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.888&lt;/td&gt;&lt;td&gt;0.906&lt;/td&gt;&lt;td&gt;0.929&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;male&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.883&lt;/td&gt;&lt;td&gt;0.904&lt;/td&gt;&lt;td&gt;0.927&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;female&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;10101&lt;/td&gt;&lt;td&gt;0.817&lt;/td&gt;&lt;td&gt;0.846&lt;/td&gt;&lt;td&gt;0.896&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;custom-js&quot;&gt;Custom JS&lt;/h2&gt;
+
+&lt;p&gt;Looking at the Shiny source code we can see that Shiny uses the &lt;a href=&quot;http://ionden.com/a/plugins/ion.rangeSlider/en.html&quot;&gt;Ion Range Slider&lt;/a&gt; JQuery component.&lt;/p&gt;
+
+&lt;p&gt;The Ion Range Slider has a number of additional settings we can hack into. To customize the rendering of the labels we’re going to use the Ion Range Slider &lt;code class=&quot;highlighter-rouge&quot;&gt;prettify&lt;/code&gt; setting which allows us to use a callback function to render our labels.&lt;/p&gt;
+
+&lt;p&gt;Create a Javascript file in your Shiny project called &lt;code class=&quot;highlighter-rouge&quot;&gt;slider.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now_bin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getHours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// bin number, 30-minute bins&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getMinutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;now_bin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;cm&quot;&gt;/**
+  Function to convert bin numbers 0 to 47 
+  to time segments in words.
+
+  This is an example you can use whatever 
+  function you like to render your labels.  
+  */&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;binNumberToWords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bin_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bin_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bin_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now_bin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Right Now&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_finish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;am&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_finish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;am&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_finish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;pm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;am&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ampm_finish&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;am&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;remainder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bin_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;remainder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;time_span&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;:30&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ampm_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;:59&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ampm_finish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;time_span&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;:00&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ampm_start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hour&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;:29&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ampm_finish&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;time_span&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;cm&quot;&gt;/**
+  Tweak ionRangeSlider options
+  prettify tells the ionRangeSlider to 
+  use our binNumberToWords function to
+  render the slider labels
+  */&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;slider&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;#timeOfDay&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ionRangeSlider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;prettify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;binNumberToWords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next we need to add our custom Javascript to our Shiny app using the &lt;code class=&quot;highlighter-rouge&quot;&gt;includeScript&lt;/code&gt; function. To your &lt;code class=&quot;highlighter-rouge&quot;&gt;ui.R&lt;/code&gt; file add.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shiny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;shinyUI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fluidPage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;  
+  &lt;span class=&quot;c1&quot;&gt;# Adds custom JS to head of Shiny HTML page
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;includeScript&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;slider.js&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Finally, the range slide component needs to be added the Shiny &lt;ui.r&gt; file.&lt;/ui.r&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;label for=&quot;mn-id-r-code-2&quot; class=&quot;margin-toggle&quot;&gt; ⊕&lt;/label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-id-r-code-2&quot; class=&quot;margin-toggle&quot; /&gt;&lt;span class=&quot;marginnote&quot;&gt;&lt;em&gt;Note:&lt;/em&gt; the first argument for the sliderInput &lt;em&gt;timeOfDay&lt;/em&gt; matches the id used in the Javascript file. &lt;/span&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shiny&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;shinyUI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fluidPage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;  
+  &lt;span class=&quot;c1&quot;&gt;# Adds custom JS to head of Shiny HTML page
+&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;includeScript&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;slider.js&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;verticalLayout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;wellPanel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;sliderInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;timeOfDay&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;s2&quot;&gt;&quot;Time of day:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;47&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;selectInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sex&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;s2&quot;&gt;&quot;Sex:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Males&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;male&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s2&quot;&gt;&quot;Females&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;female&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;selected&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;male&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;selectInput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ageGrp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Age:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;15 to 24&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s2&quot;&gt;&quot;25 to 34&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s2&quot;&gt;&quot;35 to 44&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s2&quot;&gt;&quot;45 to 54&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s2&quot;&gt;&quot;55 to 64&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;s2&quot;&gt;&quot;65+&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;selected&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;See the full implementation of this technique on &lt;a href=&quot;https://github.com/richshaw/timeUse&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 18 Jan 2016 21:08:00 -0500</pubDate>
+        <link>/post/customize-slider-label-shiny</link>
+        <guid isPermaLink="true">/post/customize-slider-label-shiny</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>A test draft</title>
+        <description>
+</description>
+        <pubDate>Mon, 18 Jan 2016 21:08:00 -0500</pubDate>
+        <link>/post/a-test-draft</link>
+        <guid isPermaLink="true">/post/a-test-draft</guid>
+        
+        
+      </item>
     
       <item>
         <title>Distinctive products, zombie and cannibal hordes</title>
@@ -304,311 +464,6 @@ border: 1px solid #DEDEDE;&quot; src=&quot;http://bl.ocks.org/richshaw/raw/b7f99
         <pubDate>Sat, 24 May 2014 21:13:57 -0400</pubDate>
         <link>/post/how-pinky-and-the-brain-could-finally-conquer-world-by-selling-insurance</link>
         <guid isPermaLink="true">/post/how-pinky-and-the-brain-could-finally-conquer-world-by-selling-insurance</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Chicken wings, context and emotion</title>
-        <description>&lt;p&gt;I’m sitting at my desk writing this on a Friday morning, but I’m already thinking about Friday night. Why? Sometimes we eat chicken wings on Friday. Much like with beer, coffee, wine and cigarettes, my first experience with chicken wings wasn’t gratifying; I can still feel my face grimacing from their spicy, vinegary taste. But since then, I’ve learned to love chicken wings like I love all my vices. For me, chicken wings have to be eaten in a certain type of place on a certain type of Friday. It has to be early, around 7 pm, in a dive bar with the lowest of lights. It has to be after a busy week, just before a busy weekend. The chicken wings should be piled high, and the napkins should be thin and plentiful. Fortunately, I’m not alone in feeling a particular way about food and place.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.deepdyve.com/lp/elsevier/emotion-responses-under-evoked-consumption-contexts-a-focus-on-the-Pj1j2VRXtz&quot;&gt;A recent study looking at people’s emotional responses to food in different consumption contexts&lt;/a&gt; highlighted how, where and when we eat affects how we feel about eating. When and where we eat food automatically evokes a mood and feelings about the appropriateness of what we’re about to consume. These feelings then directly affect how we interpret our enjoyment of the food.&lt;/p&gt;
-
-&lt;p&gt;The research found that how people felt about a food changed depending on the time and place it’s consumed. For example, I’m less enthusiastic about the prospect of eating chicken wings on a Sunday than a Friday. The amount of emotional change caused by when and where food is eaten also depends on the type of food. For example, there’s a bigger difference between how I feel eating chicken wings for breakfast or dinner than how I feel about eating an apple for breakfast or dinner. Interestingly, the researchers also found that people who frequently eat a particular type of food didn’t show a stronger emotional intensity toward that food than people who eat it less frequently. For example, as someone who doesn’t eat many kiwis, I probably feel just as strongly about kiwis as someone who eats them every day.&lt;/p&gt;
-
-&lt;p&gt;I liked this research study because of its relevancy to the work I do with food businesses. It took into account the role of emotion and context, two things that all businesses and brands need to study more closely.  Additionally, the finding that how often people ate a particular food had no effect on how they felt about it is a gentle reminder that brands can’t assume consumption frequency is a benefit. Just because some people eat a product more often than others doesn’t necessarily mean they are a fan of the brand.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 17 May 2014 17:11:54 -0400</pubDate>
-        <link>/post/chicken-wings-context-and-emotion</link>
-        <guid isPermaLink="true">/post/chicken-wings-context-and-emotion</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Psychological pricing principles reference</title>
-        <description>&lt;p&gt;The other day I came a across an &lt;a href=&quot;http://na-businesspress.homestead.com/JABE/LarsonRB_Web16_1_.pdf&quot;&gt;incredibly useful article&lt;/a&gt; that described dozens of psychological pricing principles.&lt;/p&gt;
-
-&lt;p&gt;A table listing out these principles has been created below. It’s important to remember that not all these principles may not work in all contexts. For example, the experiment on price shortening (i.e. dropping currency signs and commas from pricing) was only tested in restaurants and may not be suitable in other contexts. That being said it should provide a good starting point if you’re faced with a pricing conundrum.&lt;/p&gt;
-
-&lt;h2&gt;Psychological pricing principles table&lt;/h2&gt;
-&lt;div id=&quot;principlesContainer&quot;&gt;
-&lt;table id=&quot;principles&quot; class=&quot;datatable hover row-border&quot;&gt;
-	&lt;thead&gt;
-		&lt;tr&gt;
-			&lt;th&gt;
-				Principle
-			&lt;/th&gt;
-			&lt;th&gt;
-				Example
-			&lt;/th&gt;
-			&lt;th&gt;
-				Further reading
-			&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Positive Focus&lt;/td&gt;
-			&lt;td&gt;&quot;Save&quot; instead of &quot;Spend Less&quot;&lt;/td&gt;
-			&lt;td&gt;Gamliel, E. (2010). Message framing of products causes a preference shift in consumers&#39; choices. Journal of Consumer Behaviour, 9(4), 303-315.&lt;/td&gt; 
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Free Product&lt;/td&gt;
-			&lt;td&gt;&quot;Buy X, Get Y Free&quot;&lt;/td&gt;
-			&lt;td&gt;
-&lt;a href=&quot;http://people.duke.edu/~dandan/Papers/PI/zerofree.pdf&quot;&gt;Shampanier, K., Mazar, N. &amp;amp; Ariely, D. (2007). Zero as a Special Price: The True Value of Free Products. Marketing Science, 26, (6), 742-757.&lt;/a&gt;
-    	&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Multiple Unit Pricing&lt;/td&gt;
-			&lt;td&gt;&quot;$3 for 3 Units&quot; instead of &quot;$1 Each&quot;&lt;/td&gt;
-            &lt;td&gt;            
-&lt;a href=&quot;http://part-timemba.carlsonschool.umn.edu/marketinginstitute/research/documents/Rao_WhenMoreIsLess_2012.pdf&quot;&gt;Chen, Haipeng, et al. &quot;When More Is Less: The Impact of Base Value Neglect on Consumer Preferences for Bonus Packs over Price Discounts.&quot; Journal of Marketing 76.4 (2012): 64-77.&lt;/a&gt;            
-            &lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Anchors&lt;/td&gt;
-			&lt;td&gt;&quot;Buy 5 and Save a Trip&quot;&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;http://www.communicationcache.com/uploads/1/0/8/8/10887248/an_anchoring_and_adjustment_model_of_purchase_quantity_decisions.pdf&quot;&gt;Wansink, B., Kent, R. J., &amp;amp; Hoch, S. J. (1998). An anchoring and adjustment model of purchase quantity decisions. Journal of Marketing Research (JMR), 35(1).&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Quantity Limits&lt;/td&gt;
-			&lt;td&gt;&quot;Limit 4 per Household&quot;&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;https://faculty.fuqua.duke.edu/~jglynch/Ba591/Session07/Inman%20Peter%20Raghubir%20JCR%201997.pdf&quot;&gt;Jeffrey Inman, J., Peter, A. C., &amp;amp; Raghubir, P. (1997). Framing the deal: The role of restrictions in accentuating deal value. Journal of Consumer Research, 24(1), 68-79.&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Scarcity&lt;/td&gt;
-			&lt;td&gt;&quot;While Supplies Last&quot; or &quot;Limited Edition&quot; Products&lt;/td&gt;
-            &lt;td&gt;Verhallen, T. M., &amp;amp; Robben, H. S. (1994). Scarcity and preference: An experiment on unavailability and product evaluation. Journal of Economic Psychology, 15(2), 315-331.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Price Salience&lt;/td&gt;
-			&lt;td&gt;&quot;We Accept Credit Cards and Gift Cards&quot;&lt;/td&gt;
-      &lt;td&gt;&lt;a href=&quot;http://web.mit.edu/simester/Public/Papers/Alwaysleavehome.pdf&quot;&gt;Prelec, D., &amp;amp; Simester, D. (2001). Always leave home without it: A further investigation of the credit-card effect on willingness to pay. Marketing letters, 12(1), 5-12.&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Spare Change Effect&lt;/td&gt;
-			&lt;td&gt;&quot;Only Costs Four Quarters&quot;&lt;/td&gt;
-            &lt;td&gt;&amp;lt;a href=&quot;http://www.jstor.org/stable/10.1086/599222&quot;Raghubir&quot;&amp;gt;Raghubir, P., &amp;amp; Srivastava, J. (2009). The denomination effect. Journal of Consumer Research, 36(4), 701-713.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Pennies-a-Day Pricing&lt;/td&gt;
-			&lt;td&gt;&quot;Just 50-Cents per Day&quot;&lt;/td&gt;
-            &lt;td&gt;Gourville, J. T. (1998). Pennies-a-day: The effect of temporal reframing on transaction evaluation. Journal of Consumer Research, 24(4), 395-403.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Explicit Comparisons&lt;/td&gt;
-			&lt;td&gt;&quot;Less than a Cup of Coffee per Day&quot;&lt;/td&gt;
-            &lt;td&gt;Gourville, J. T. (1999). The effect of implicit versus explicit comparisons on temporal pricing claims. Marketing Letters, 10(2), 113-124.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Multidimensional Pricing&lt;/td&gt;
-			&lt;td&gt;&quot;$39 and 66,000 miles&quot;&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;https://msbfile03.usc.edu/digitalmeasures/jnunes/intellcont/CC_Pricing_JMR-1.pdf&quot;&gt;Dreze, X., &amp;amp; Nunes, J. C. (2004). Using combined-currency prices to lower consumers’ perceived cost. Journal of Marketing Research, 41(1), 59-72.&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Trade-in Pricing&lt;/td&gt;
-			&lt;td&gt;Highlight and Raise Trade-in Value, Raise Item Price&lt;/td&gt;
-            &lt;td&gt;Srivastava, J., &amp;amp; Chakravarti, D. (2011). Price presentation effects in purchases involving trade-ins. Journal of Marketing Research, 48(5), 910-919.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Emotional Pricing&lt;/td&gt;
-			&lt;td&gt;Use Installment Payments that Decrease Over Time&lt;/td&gt;
-            &lt;td&gt;Peine, K., Heitmann, M., &amp;amp; Herrmann, A. (2009). Getting a feel for price affect: A conceptual framework and empirical investigation of consumers&#39; emotional responses to price information. Psychology &amp;amp; Marketing, 26(1), 39-66.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Perceived Fairness&lt;/td&gt;
-			&lt;td&gt;&quot;Prices Frozen for 3 Months&quot;&lt;/td&gt;
-            &lt;td&gt;Wang, Y., &amp;amp; Krishna, A. (2012). Enticing for me but unfair to her: Can targeted pricing evoke socially conscious behavior?. Journal of Consumer Psychology, 22(3), 433-442.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Typeface and Terms&lt;/td&gt;
-			&lt;td&gt;&quot;Low Price&quot; in Smaller Font&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;http://users.business.uconn.edu/rcoulter/2005%20JCP%20Coulter%20and%20Coulter.pdf&quot;&gt;Coulter, K. S., &amp;amp; Coulter, R. A. (2005). Size does matter: the effects of magnitude representation congruency on price perceptions and purchase likelihood. Journal of Consumer Psychology, 15(1), 64-76.&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Phonetic Symbolism&lt;/td&gt;
-			&lt;td&gt;Use Sale Prices with Front Vowels and Fricatives e.g. $7.66, $2.33&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;http://www.ejcr.org/PDFs/newsletters/Curations3/Coulter_Coulter.pdf&quot;&gt;Coulter, K. S., &amp;amp; Coulter, R. A. (2010). Small sounds, big deals: Phonetic symbolism effects in pricing. Journal of Consumer Research, 37(2), 315-328.&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Package Design&lt;/td&gt;
-			&lt;td&gt;Change Packaging Material, Let People Touch Item&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;http://www.anderson.ucla.edu/faculty/suzanne.shu/JCR%20touch%20ownership.pdf&quot;&gt;Peck, J., &amp;amp; Shu, S. B. (2009). The effect of mere touch on perceived ownership. Journal of Consumer Research, 36(3), 434-447.&lt;/a&gt;&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Label Design&lt;/td&gt;
-			&lt;td&gt;Adjust Terminology and Photos, Use Larger Numbers&lt;/td&gt;
-            &lt;td&gt;van Rompay, T. J., de Vries, P. W., Bontekoe, F., &amp;amp; Tanja‐Dijkstra, K. (2012). Embodied product perception: Effects of verticality cues in advertising and packaging design on consumer impressions and price expectations. Psychology &amp;amp; Marketing, 29(12), 919-928.&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;td&gt;Package Dimensions&lt;/td&gt;
-			&lt;td&gt;Emphasize Longest Dimension (Usually Height)&lt;/td&gt;
-            &lt;td&gt;&lt;a href=&quot;http://faculty.insead.edu/pierre-chandon/documents/JMR-Chandon-Ordabayeva-Supersize-in-1D-Downsize-in-3D-JMR-09.pdf&quot;&gt;&lt;/a&gt;Chandon, P., &amp;amp; Ordabayeva, N. (2009). Supersize in one dimension, downsize in three dimensions: Effects of spatial dimensionality on size perceptions and preferences. Journal of Marketing Research, 46(6), 739-753.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price Expectations&lt;/td&gt;
-	&lt;td&gt;Identify Environmental Cues that Buyers Use&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;Bagchi, R., &amp;amp; Cheema, A. (2013). The effect of red background color on willingness-to-pay: The moderating role of selling mechanism. Journal of Consumer Research, 39(5), 947-960.&quot;&gt;Bagchi, R., &amp;amp; Cheema, A. (2013). The effect of red background color on willingness-to-pay: The moderating role of selling mechanism. Journal of Consumer Research, 39(5), 947-960.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Compromise Effect&lt;/td&gt;
-	&lt;td&gt;Adjust Product Line to Sell Middle Option&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;https://archive.ama.org/archive/ResourceLibrary/JournalofMarketingResearch(JMR)/documents/9602160653.pdf&quot;&gt;Simonson, I., &amp;amp; Tversky, A. (1992). Choice in context: Tradeoff contrast and extremeness aversion. Journal of Marketing Research (JMR), 29(3).&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Consistent Pricing&lt;/td&gt;
-	&lt;td&gt;Maintain Price and Show Market Value&lt;/td&gt;
-    &lt;td&gt;Boothe, J., Schwartz, J. A., &amp;amp; Chapman, G. B. (2007). Preference reversals resulting from a market value heuristic. marketing theory, 7(1), 27-38.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;External Reference Price&lt;/td&gt;
-	&lt;td&gt;&quot;Regularly $35, Now $29&quot; or &quot;Elsewhere $35, Our Price 15% Less&quot;&lt;/td&gt;
-    &lt;td&gt;Chandrashekaran, R., &amp;amp; Grewal, D. (2006). Anchoring effects of advertised reference price and sale price: the moderating role of saving presentation format. Journal of Business Research, 59(10), 1063-1071.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price Thresholds&lt;/td&gt;
-	&lt;td&gt;Watch for Thresholds (Crossing has Large Effects)&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://forum.johnson.cornell.edu/faculty/gaur/priceexperiment%2020040722.pdf&quot;&gt;Gaur, V., &amp;amp; Fisher, M. L. (2005). In‐Store Experiments to Determine the Impact of Price on Sales. Production and Operations Management, 14(4), 377-387.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Primacy and Recency&lt;/td&gt;
-	&lt;td&gt;Give Buyers Intended First and Last Impression&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://www.researchgate.net/publication/236850571_If_You_Have_a_Choice_You_Have_Trouble_Stimulus_Valence_Modulates_Presentation-Order_Effects_in_Preference_Judgment/file/72e7e526d6997c7790.pdf&quot;&gt;Englund, M. P., &amp;amp; Hellström, Å. (2012). If you have a choice, you have trouble: Stimulus valence modulates presentation‐order effects in preference judgment. Journal of Behavioral Decision Making, 25(1), 82-94.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price De-emphasis&lt;/td&gt;
-	&lt;td&gt;List Units in Large Transactions before Price&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://filebox.vt.edu/users/rbagchi/Published%20Articles/OrderEffectsManuscript.pdf&quot;&gt;Bagchi, R., &amp;amp; Davis, D. F. (2012). $29 for 70 items or 70 items for $29? How presentation order affects package perceptions. Journal of Consumer Research, 39(1), 62-73.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Product Sequence&lt;/td&gt;
-	&lt;td&gt;Reveal Most Attractive Items First&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://competitionpolicy.ac.uk/documents/107435/107587/1.165277!ccp10-08.pdf&quot;&gt;Sitzia, S. &amp;amp; Zizzo, D. J. (2012). Price Lower and Then Higher or Price Higher and Then Lower? Journal of Economic Psychology, 33, (6), 1084-1099.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price Sequence&lt;/td&gt;
-	&lt;td&gt;Show High-Priced Products First and Adjust Message&lt;/td&gt;
-    &lt;td&gt;Suk, K., Lee, J., &amp;amp; Lichtenstein, D. R. (2012). The influence of price presentation order on consumer choice. Journal of Marketing Research, 49(5), 708-717.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Premium Surroundings&lt;/td&gt;
-	&lt;td&gt;Show with Premium Items from Other Categories&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://bmlwk01.bm.ust.hk/mark/staff/Rashmi/Rashmi%20-%20JCR%20-%202002%20Mar.pdf&quot;&gt;Adaval, R., &amp;amp; Monroe, K. B. (2002). Automatic construction and use of contextual information for product and price evaluations. Journal of Consumer Research, 28(4), 572-588.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Category Perceptions&lt;/td&gt;
-	&lt;td&gt;Add Product that Makes Target Item More Attractive&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;https://faculty-gsb.stanford.edu/khan/documents/bundling.doc&quot;&gt;Khan, U., &amp;amp; Dhar, R. (2010). Price-framing effects on the purchase of hedonic and utilitarian bundles. Journal of Marketing Research, 47(6), 1090-1099.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Assortment Variety&lt;/td&gt;
-	&lt;td&gt;Show More Variety with High Quality Items&lt;/td&gt;
-    &lt;td&gt;Bertini, M., Wathieu, L., &amp;amp; Iyengar, S. S. The Discriminating Consumer: Product Proliferation and Willingness to Pay for Quality.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Discount Location&lt;/td&gt;
-	&lt;td&gt;Move and Reformat Sale Tag to Match Strategy&lt;/td&gt;
-    &lt;td&gt;Choi, P. &amp;amp; Coulter, K. S. (2012). It’s Not All Relative: The Effects of Mental and Physical Positioning of Comparative Prices on Absolute versus Relative Discount Assessment. Journal of Retailing, 88, (4), 512-527.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Full Bundle&lt;/td&gt;
-	&lt;td&gt;&quot;Load&quot; Model and Let Buyer Drop Options&lt;/td&gt;
-    &lt;td&gt;Levin, I. P., Schreiber, J., Lauriola, M., &amp;amp; Gaeth, G. J. (2002). A tale of two pizzas: building up from a basic product versus scaling down from a fully-loaded product. Marketing Letters, 13(4), 335-344.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Bundle Discounts&lt;/td&gt;
-	&lt;td&gt;Adjust Discount Attribution within Bundle&lt;/td&gt;
-    &lt;td&gt;Yadav, M. S. (1995). Bundle evaluation in different market segments: The effects of discount framing and buyers’ preference heterogeneity. Journal of the Academy of Marketing Science, 23(3), 206-215.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Decoy Pricing&lt;/td&gt;
-	&lt;td&gt;Change Individual Item Prices to Sell Bundle&lt;/td&gt;
-    &lt;td&gt;Schwartz, Z., &amp;amp; Cohen, E. (1999). The perceived value of value meals: an experimental investigation into product bundling and decoy pricing in restaurant menus. Journal of Restaurant &amp;amp; Foodservice Marketing, 3(3-4), 19-37.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Partitioned Pricing&lt;/td&gt;
-	&lt;td&gt;Separate Shipping and Handling from Price&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;https://www8.gsb.columbia.edu/sites/decisionsciences/files/files/Divide_and_Prosper.pdf&quot;&gt;Morwitz, V., Greenleaf, E., &amp;amp; Johnson, E. J. (1998). Divide and prosper: consumers&#39; reaction to partitioned prices. Journal of Marketing Research, 35, 453-463.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Asymmetric Competition&lt;/td&gt;
-	&lt;td&gt;Strive to be Premium Brand in Category&lt;/td&gt;
-    &lt;td&gt;Sivakumar, K. (2000). Price-tier competition: an integrative review. Journal of Product &amp;amp; Brand Management, 9(5), 276-297.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Odd-Ending Prices&lt;/td&gt;
-	&lt;td&gt;Use Nines at the Right-End of Price&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://business.camden.rutgers.edu/files/Bizer-Schindler-2005.pdf&quot;&gt;Bizer, G. Y., &amp;amp; Schindler, R. M. (2005). Direct evidence of ending‐digit drop‐off in price information processing. Psychology &amp;amp; Marketing, 22(10), 771-783.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price Color&lt;/td&gt;
-	&lt;td&gt;Use Red Prices instead of Black when Targeting Men&lt;/td&gt;
-    &lt;td&gt;Puccinelli, N. M., Chandrashekaran, R., Grewal, D., &amp;amp; Suri, R. (2013). Are men seduced by red? The effect of red versus black prices on price perceptions. Journal of Retailing, 89(2), 115-125.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Symmetric Prices&lt;/td&gt;
-	&lt;td&gt;Make Price Vertical Mirror Symmetric&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://jrconsumers.com/Consumer_Articles/issue_17/Dobson_et_al._consumer.pdf&quot;&gt;Dobson, J., Gorman, L., &amp;amp; Moore, M. D. (2010). Consumer choice bias due to number symmetry: evidence from real estate prices. Journal of Research for Consumers, 17(1).&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Precise Pricing&lt;/td&gt;
-	&lt;td&gt;Use Non-zeros to Suggest Price Precision&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://forum.johnson.cornell.edu/faculty/mthomas/PricePrecisionEffect.pdf&quot;&gt;Thomas, M., Simon, D. H., &amp;amp; Kadiyali, V. (2010). The price precision effect: Evidence from laboratory and market data. Marketing Science, 29(1), 175-190.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Shorten Prices&lt;/td&gt;
-	&lt;td&gt;Drop Commas and Dollar Signs in Prices&lt;/td&gt;
-    &lt;td&gt;Yang, S. S., Kimes, S. E., &amp;amp; Sessarego, M. M. (2009). Menu price presentation influences on consumer purchase behavior in restaurants. International Journal of Hospitality Management, 28(1), 157-160.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Unpredictable Pricing&lt;/td&gt;
-	&lt;td&gt;Reduce Buyer Forecasting of Price Change Timing&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://www.researchgate.net/publication/222542819_A_meta-analysis_of_the_impact_of_price_presentation_on_perceived_savings/file/3deec52a115ab5ab1d.pdf&quot;&gt;Krishna, A., Briesch, R., Lehmann, D. R., &amp;amp; Yuan, H. (2002). A meta-analysis of the impact of price presentation on perceived savings. Journal of Retailing, 78(2), 101-118.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Tactical Price Increases&lt;/td&gt;
-	&lt;td&gt;Increase Prices in Small Steps&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://gkalyan.com/Uploads/Documents/GK_JCR1994.pdf&quot;&gt;Kalyanaram, G., &amp;amp; Little, J. D. (1994). An empirical analysis of latitude of price acceptance in consumer package goods. Journal of Consumer Research, 408-418.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Just Noticeable Pricing&lt;/td&gt;
-	&lt;td&gt;Reduce Price Enough, But Not Too Much&lt;/td&gt;
-    &lt;td&gt;Büyükkurt, B. K. (1986). Integration of serially sampled price infromation: Modeling and some findings. Journal of Consumer Research, 357-373.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Reduced Recall Pricing&lt;/td&gt;
-	&lt;td&gt;Choose Prices with More Syllables&lt;/td&gt;
-    &lt;td&gt;Luna, D., &amp;amp; Kim, H. M. C. (2009). How much was your shopping basket? Working memory processes in total basket price estimation. Journal of Consumer Psychology, 19(3), 346-355.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price Complexity&lt;/td&gt;
-	&lt;td&gt;Describe Most Discounts with Percentages&lt;/td&gt;
-    &lt;td&gt;McKechnie, S., Devlin, J., Ennew, C., &amp;amp; Smith, A. (2012). Effects of discount framing in comparative price advertising. European Journal of Marketing, 46(11/12), 1501-1522.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Relative Pricing&lt;/td&gt;
-	&lt;td&gt;Maintain Relative Price Spreads versus Competitors&lt;/td&gt;
-    &lt;td&gt;Azar, O. H. (2011). Do people think about absolute or relative price differences when choosing between substitute goods?. Journal of Economic Psychology, 32(3), 450-457.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Prestige Pricing&lt;/td&gt;
-	&lt;td&gt;Increase Prices as a Quality Signal&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://ckgsb.edu.cn/userfiles/doc/ck_faculty_bhsun_signaling.pdf&quot;&gt;Erdem, T., Keane, M. P., &amp;amp; Sun, B. (2008). A dynamic model of brand choice when price and advertising signal product quality. Marketing Science, 27(6), 1111-1125.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-	&lt;td&gt;Price Placebo Effect&lt;/td&gt;
-	&lt;td&gt;Raise Prices to Boost Perceive Performance&lt;/td&gt;
-    &lt;td&gt;&lt;a href=&quot;http://faculty.insead.edu/carmon/pdffiles/Placebo%20JMR%20Lead.pdf&quot;&gt;Shiv, B., Carmon, Z., &amp;amp; Ariely, D. (2005). Placebo effects of marketing actions: Consumers may get what they pay for. Journal of marketing Research, 42(4), 383-393.&lt;/a&gt;&lt;/td&gt;
-&lt;/tr&gt;
-	&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Tue, 06 May 2014 17:53:10 -0400</pubDate>
-        <link>/post/psychological-price-principles</link>
-        <guid isPermaLink="true">/post/psychological-price-principles</guid>
         
         
       </item>
