@@ -38,15 +38,17 @@ The average images were created by taking the average pixel color, for each pixe
 
 While the bubble chart and averages tell us about the common tags, it doesn’t tell us anything about how the tags relate to each other. What is related to “people”? What sports are included in “sport”?
 
+<figure class='fullwidth'>
 <iframe style="width: 100%;
 height: 500px;
 border: 1px solid #DEDEDE;" src="http://bl.ocks.org/richshaw/raw/b7f99f539e2a2546ab64/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</figure>
 
 The network graph above shows how the tags fit together. Each circle represents a tag, and a line is draw between tags that are mentioned together. We can see that beautiful flowers include “orchid,” “poppy” and “dandelion” and sports like “football,” “golf” and even “wrestling” have beautiful moments. We can also look at the overall structure of the graph. You’ll see that there are four clusters of circles, one centering on people, one on animals, another on nature and a fourth on buildings (pulled close to nature by the sun and the sky).
 
 We can combine the data from the bubble chart and the network graph, along with a [segmentation](http://arxiv.org/pdf/physics/0602124.pdf) to give us a complete overview of the tags.
 
-![What is beautiful? Graph](/assets/beautifulgraph.svg)
+{% fullwidth 'assets/beautifulgraph.svg' "What is beautiful? Network Graph" %}
 
 In the network graph above, the size of the circles and text show how many times a tag was used, like in the bubble chart. The lines show which tags are mentioned together, while the thickness of the lines represents how often the tags were mentioned together. The colors show the results of our segmentation. There are clusters of images around beautiful people, animals, flowers, sky and buildings.
 
@@ -58,7 +60,7 @@ To find out, I recruited a team of humans to analyze the images tagged with “p
 
 The plot below shows an analysis of the different properties of the beautiful people images and how they relate to each other. The properties toward the center of the plot are the ones mentioned most frequently, and the properties that are close to each other tend to appear together.
 
-![Mulitple Correspondence Analysis Plot](/assets/MCA.svg)
+{% fullwidth 'assets/MCA.svg' "Mulitple Correspondence Analysis Plot" %}
 
 The plot shows us that an image of a person is more likely to be #beautiful if they’re young, white, females with a happy facial expression. The YWFH’s accounted for a full 23% of all images of #beautiful people, significantly higher than any other group. It also doesn’t hurt if you’re a brunette. Brunettes account for 72% of #beautiful people overall, and young, white, females with a happy facial expression and long brunette hair make up 10% of #beautiful people overall. 
 
@@ -84,10 +86,10 @@ So was suffering through high school English literature worth it? Is “beauty i
 
 ## Resources
 
-* Bubble chart code: http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa
-* Network graph code: http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64
-* Pretty tables: http://bl.ocks.org/richshaw/raw/187f2f6df9b3f5ed55b8/ 
-* Data: https://drive.google.com/folderview?id=0B268p6viJlBMaUxmUlF6TDZiOUU&usp=sharing
+* [Bubble chart code](http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa)
+* [Network graph code](http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64)
+* [Pretty tables](http://bl.ocks.org/richshaw/raw/187f2f6df9b3f5ed55b8/)
+* [Data](https://drive.google.com/folderview?id=0B268p6viJlBMaUxmUlF6TDZiOUU&usp=sharing)
 
 
 

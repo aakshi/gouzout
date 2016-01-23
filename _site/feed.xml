@@ -5,9 +5,40 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 19 Jan 2016 22:28:49 -0500</pubDate>
-    <lastBuildDate>Tue, 19 Jan 2016 22:28:49 -0500</lastBuildDate>
+    <pubDate>Sat, 23 Jan 2016 16:25:00 -0500</pubDate>
+    <lastBuildDate>Sat, 23 Jan 2016 16:25:00 -0500</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>A test draft</title>
+        <description>
+</description>
+        <pubDate>Sat, 23 Jan 2016 16:25:00 -0500</pubDate>
+        <link>/post/a-test-draft</link>
+        <guid isPermaLink="true">/post/a-test-draft</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Most Common Use of Time, By Age and Sex</title>
+        <description>&lt;p&gt;How do you spend your time? How does everybody else? The American Time Use Survey conducted by the Bureau of Labor Statistics has aimed to answer this question since 2003.&lt;/p&gt;
+
+&lt;figure class=&quot;fullwidth&quot;&gt;
+&lt;iframe style=&quot;height:900px;&quot; src=&quot;https://richshaw.shinyapps.io/timeUse/&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Produced for the &lt;a href=&quot;https://www.coursera.org/specializations/jhu-data-science&quot;&gt;Coursea Data Products course&lt;/a&gt;. Data is from the &lt;a href=&quot;https://www.atusdata.org/atus/index.shtml&quot;&gt;American Time Use Survey&lt;/a&gt; by the Bureau of Labor Statistics and was formatted by &lt;a href=&quot;http://flowingdata.com/&quot;&gt;Flowing Data&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/richshaw/timeUse&quot;&gt;Code available on GitHub&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 23 Jan 2016 00:00:00 -0500</pubDate>
+        <link>/post/common-use-of-time</link>
+        <guid isPermaLink="true">/post/common-use-of-time</guid>
+        
+        
+      </item>
     
       <item>
         <title>How to customize slide labels in Shiny</title>
@@ -286,15 +317,17 @@ border: 1px solid #DEDEDE;&quot; src=&quot;https://richshaw.github.io/loyaltypro
 
 &lt;p&gt;While the bubble chart and averages tell us about the common tags, it doesn’t tell us anything about how the tags relate to each other. What is related to “people”? What sports are included in “sport”?&lt;/p&gt;
 
+&lt;figure class=&quot;fullwidth&quot;&gt;
 &lt;iframe style=&quot;width: 100%;
 height: 500px;
 border: 1px solid #DEDEDE;&quot; src=&quot;http://bl.ocks.org/richshaw/raw/b7f99f539e2a2546ab64/&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;The network graph above shows how the tags fit together. Each circle represents a tag, and a line is draw between tags that are mentioned together. We can see that beautiful flowers include “orchid,” “poppy” and “dandelion” and sports like “football,” “golf” and even “wrestling” have beautiful moments. We can also look at the overall structure of the graph. You’ll see that there are four clusters of circles, one centering on people, one on animals, another on nature and a fourth on buildings (pulled close to nature by the sun and the sky).&lt;/p&gt;
 
 &lt;p&gt;We can combine the data from the bubble chart and the network graph, along with a &lt;a href=&quot;http://arxiv.org/pdf/physics/0602124.pdf&quot;&gt;segmentation&lt;/a&gt; to give us a complete overview of the tags.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/beautifulgraph.svg&quot; alt=&quot;What is beautiful? Graph&quot; /&gt;&lt;/p&gt;
+&lt;figure class=&quot;fullwidth&quot;&gt;&lt;img src=&quot;/assets/beautifulgraph.svg&quot; /&gt;&lt;figcaption&gt;What is beautiful? Network Graph&lt;/figcaption&gt;&lt;/figure&gt;
 
 &lt;p&gt;In the network graph above, the size of the circles and text show how many times a tag was used, like in the bubble chart. The lines show which tags are mentioned together, while the thickness of the lines represents how often the tags were mentioned together. The colors show the results of our segmentation. There are clusters of images around beautiful people, animals, flowers, sky and buildings.&lt;/p&gt;
 
@@ -306,7 +339,7 @@ border: 1px solid #DEDEDE;&quot; src=&quot;http://bl.ocks.org/richshaw/raw/b7f99
 
 &lt;p&gt;The plot below shows an analysis of the different properties of the beautiful people images and how they relate to each other. The properties toward the center of the plot are the ones mentioned most frequently, and the properties that are close to each other tend to appear together.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/MCA.svg&quot; alt=&quot;Mulitple Correspondence Analysis Plot&quot; /&gt;&lt;/p&gt;
+&lt;figure class=&quot;fullwidth&quot;&gt;&lt;img src=&quot;/assets/MCA.svg&quot; /&gt;&lt;figcaption&gt;Mulitple Correspondence Analysis Plot&lt;/figcaption&gt;&lt;/figure&gt;
 
 &lt;p&gt;The plot shows us that an image of a person is more likely to be #beautiful if they’re young, white, females with a happy facial expression. The YWFH’s accounted for a full 23% of all images of #beautiful people, significantly higher than any other group. It also doesn’t hurt if you’re a brunette. Brunettes account for 72% of #beautiful people overall, and young, white, females with a happy facial expression and long brunette hair make up 10% of #beautiful people overall.&lt;/p&gt;
 
@@ -332,10 +365,10 @@ border: 1px solid #DEDEDE;&quot; src=&quot;http://bl.ocks.org/richshaw/raw/b7f99
 &lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Bubble chart code: http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa&lt;/li&gt;
-  &lt;li&gt;Network graph code: http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64&lt;/li&gt;
-  &lt;li&gt;Pretty tables: http://bl.ocks.org/richshaw/raw/187f2f6df9b3f5ed55b8/&lt;/li&gt;
-  &lt;li&gt;Data: https://drive.google.com/folderview?id=0B268p6viJlBMaUxmUlF6TDZiOUU&amp;amp;usp=sharing&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa&quot;&gt;Bubble chart code&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64&quot;&gt;Network graph code&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/raw/187f2f6df9b3f5ed55b8/&quot;&gt;Pretty tables&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://drive.google.com/folderview?id=0B268p6viJlBMaUxmUlF6TDZiOUU&amp;amp;usp=sharing&quot;&gt;Data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 </description>
@@ -365,38 +398,6 @@ border: 1px solid #DEDEDE;&quot; src=&quot;http://bl.ocks.org/richshaw/raw/b7f99
         <pubDate>Thu, 29 May 2014 21:50:30 -0400</pubDate>
         <link>/post/the-psychology-of-going-to-the-gym-and-actually-losing-weight</link>
         <guid isPermaLink="true">/post/the-psychology-of-going-to-the-gym-and-actually-losing-weight</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>How Pinky and the Brain could finally conquer world by selling insurance</title>
-        <description>&lt;p&gt;“’Gee, Brain, what do you want to do tonight?’  ‘The same thing we do every night, Pinky—take over the world!’” echoes out, barely audible, from the television. It’s just after 7a.m. on a Sunday morning. Everyone else in the house is still sleeping, but I’m sitting with a cup of tea, watching cartoons and continuing a decades old ritual. Maybe it’s a childish diversion, a nostalgic indulgence, or a clear symptom of Peter-Pan syndrome. I don’t know, but it happens every Sunday. Adults like me aren’t supposed to like cartoons, but we do; &lt;em&gt;The Simpsons&lt;/em&gt;, &lt;em&gt;Sponge Bob&lt;/em&gt; and &lt;em&gt;South Park&lt;/em&gt; attest to that. It is within paradoxes like this, in the gap between common knowledge and actual behavior, that the most interesting aspects of human nature can be found.&lt;/p&gt;
-
-&lt;p&gt;This is why I was interested in &lt;a href=&quot;http://www.deepdyve.com/lp/inderscience-publishers/are-cartoon-ads-effective-for-adult-consumers-qfBWla1YO2/3&quot;&gt;two researchers who investigated the role of cartoons in advertising targeted at adults&lt;/a&gt;. The use of cartoons in advertising is nothing new; however, their use has mainly focused on children, and research into how cartoons affect adults is almost nonexistent. Would cartoons in advertising be considered annoying, or would cartoons break down the cold hard exterior of an adult? To understand the effect of cartoons in advertising, researchers created two advertisements, one with a cartoon and one without, for a number of different low involvement (facial tissues and mouth wash) and high involvement (laptop computers and acne cream) products. For each of these advertisements, participants were asked questions that would reveal their comprehension, recall, credibility, and attitudes towards each brand. Surprisingly, the cartoons did not improve the scores for the low involvement products, which people tend to buy without too much consideration; they did increase the scores for the high involvement products, which people tend to look at in much more detail.&lt;/p&gt;
-
-&lt;p&gt;Why this happens is unclear, but it is possible that for high involvement, often serious products, the unexpected presence of a cartoon prevents the automatic judgment of that product and forces people to consider its features and benefits on its  own merits. In other words, if Pinky and the Brain were to focus their efforts on selling high involvement products like insurance, they could conquer the world in no time at all, provided the Geico Gecko doesn’t get there first.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 24 May 2014 21:13:57 -0400</pubDate>
-        <link>/post/how-pinky-and-the-brain-could-finally-conquer-world-by-selling-insurance</link>
-        <guid isPermaLink="true">/post/how-pinky-and-the-brain-could-finally-conquer-world-by-selling-insurance</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Chicken wings, context and emotion</title>
-        <description>&lt;p&gt;I’m sitting at my desk writing this on a Friday morning, but I’m already thinking about Friday night. Why? Sometimes we eat chicken wings on Friday. Much like with beer, coffee, wine and cigarettes, my first experience with chicken wings wasn’t gratifying; I can still feel my face grimacing from their spicy, vinegary taste. But since then, I’ve learned to love chicken wings like I love all my vices. For me, chicken wings have to be eaten in a certain type of place on a certain type of Friday. It has to be early, around 7 pm, in a dive bar with the lowest of lights. It has to be after a busy week, just before a busy weekend. The chicken wings should be piled high, and the napkins should be thin and plentiful. Fortunately, I’m not alone in feeling a particular way about food and place.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.deepdyve.com/lp/elsevier/emotion-responses-under-evoked-consumption-contexts-a-focus-on-the-Pj1j2VRXtz&quot;&gt;A recent study looking at people’s emotional responses to food in different consumption contexts&lt;/a&gt; highlighted how, where and when we eat affects how we feel about eating. When and where we eat food automatically evokes a mood and feelings about the appropriateness of what we’re about to consume. These feelings then directly affect how we interpret our enjoyment of the food.&lt;/p&gt;
-
-&lt;p&gt;The research found that how people felt about a food changed depending on the time and place it’s consumed. For example, I’m less enthusiastic about the prospect of eating chicken wings on a Sunday than a Friday. The amount of emotional change caused by when and where food is eaten also depends on the type of food. For example, there’s a bigger difference between how I feel eating chicken wings for breakfast or dinner than how I feel about eating an apple for breakfast or dinner. Interestingly, the researchers also found that people who frequently eat a particular type of food didn’t show a stronger emotional intensity toward that food than people who eat it less frequently. For example, as someone who doesn’t eat many kiwis, I probably feel just as strongly about kiwis as someone who eats them every day.&lt;/p&gt;
-
-&lt;p&gt;I liked this research study because of its relevancy to the work I do with food businesses. It took into account the role of emotion and context, two things that all businesses and brands need to study more closely.  Additionally, the finding that how often people ate a particular food had no effect on how they felt about it is a gentle reminder that brands can’t assume consumption frequency is a benefit. Just because some people eat a product more often than others doesn’t necessarily mean they are a fan of the brand.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 17 May 2014 17:11:54 -0400</pubDate>
-        <link>/post/chicken-wings-context-and-emotion</link>
-        <guid isPermaLink="true">/post/chicken-wings-context-and-emotion</guid>
         
         
       </item>
