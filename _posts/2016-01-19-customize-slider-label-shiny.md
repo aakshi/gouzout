@@ -1,5 +1,5 @@
 ---
-title: "How to customize slide labels in Shiny"
+title: "How to customize slider labels in Shiny"
 layout: post
 ---
 [Shiny](http://shiny.rstudio.com/) offers a good selection of arguments to help you customize the slider input control. If you need to add a prefix or suffix to a label it's easy to do in R. But, if you need more complicated reformating of labels Javascript is your friend.
