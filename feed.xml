@@ -5,8 +5,8 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 23 Jan 2016 16:27:16 -0500</pubDate>
-    <lastBuildDate>Sat, 23 Jan 2016 16:27:16 -0500</lastBuildDate>
+    <pubDate>Sun, 07 Feb 2016 14:25:07 -0500</pubDate>
+    <lastBuildDate>Sun, 07 Feb 2016 14:25:07 -0500</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -30,7 +30,7 @@
       </item>
     
       <item>
-        <title>How to customize slide labels in Shiny</title>
+        <title>How to customize slider labels in Shiny</title>
         <description>&lt;p&gt;&lt;a href=&quot;http://shiny.rstudio.com/&quot;&gt;Shiny&lt;/a&gt; offers a good selection of arguments to help you customize the slider input control. If you need to add a prefix or suffix to a label it’s easy to do in R. But, if you need more complicated reformating of labels Javascript is your friend.&lt;/p&gt;
 
 &lt;p&gt;Looking at the Shiny source code we can see that Shiny uses the &lt;a href=&quot;http://ionden.com/a/plugins/ion.rangeSlider/en.html&quot;&gt;Ion Range Slider&lt;/a&gt; JQuery component.&lt;/p&gt;
