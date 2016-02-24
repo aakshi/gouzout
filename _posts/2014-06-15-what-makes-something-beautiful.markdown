@@ -16,8 +16,9 @@ To analyze 1000 pictures by hand is error prone and time consuming. So to get an
 
 So what was contained within our 1000 #beautiful images?
 
-<figure class='fullwidth'>
-<iframe style="height:500px;" src="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<figure>
+    <figcaption><a href="http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/">What is beautiful? Bubble Chart.</a></figcaption>    
+    <img alt="Bubble chart" src="{% asset_path bubble-chart.svg %}">
 </figure>
 
 The bubble chart above shows the number of times each tag occurred. I don’t want to conclude that, as humans, we are a race of narcissists, but we do have a lot of beautiful people, but also some sunsets, sky and sport.
@@ -38,17 +39,16 @@ The average images were created by taking the average pixel color, for each pixe
 
 While the bubble chart and averages tell us about the common tags, it doesn’t tell us anything about how the tags relate to each other. What is related to “people”? What sports are included in “sport”?
 
-<figure class='fullwidth'>
-<iframe style="width: 100%;
-height: 500px;
-border: 1px solid #DEDEDE;" src="http://bl.ocks.org/richshaw/raw/b7f99f539e2a2546ab64/" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<figure>
+    <figcaption><a href="http://bl.ocks.org/richshaw/raw/b7f99f539e2a2546ab64/">What is beautiful? Network Graph.</a></figcaption>
+    <img alt="Bubble chart" src="{% asset_path network-graph.svg %}">
 </figure>
 
 The network graph above shows how the tags fit together. Each circle represents a tag, and a line is draw between tags that are mentioned together. We can see that beautiful flowers include “orchid,” “poppy” and “dandelion” and sports like “football,” “golf” and even “wrestling” have beautiful moments. We can also look at the overall structure of the graph. You’ll see that there are four clusters of circles, one centering on people, one on animals, another on nature and a fourth on buildings (pulled close to nature by the sun and the sky).
 
 We can combine the data from the bubble chart and the network graph, along with a [segmentation](http://arxiv.org/pdf/physics/0602124.pdf) to give us a complete overview of the tags.
 
-{% fullwidth 'assets/beautifulgraph.svg' "What is beautiful? Network Graph" %}
+{% maincolumn 'assets/beautifulgraph.svg' "What is beautiful? Network Graph" %}
 
 In the network graph above, the size of the circles and text show how many times a tag was used, like in the bubble chart. The lines show which tags are mentioned together, while the thickness of the lines represents how often the tags were mentioned together. The colors show the results of our segmentation. There are clusters of images around beautiful people, animals, flowers, sky and buildings.
 

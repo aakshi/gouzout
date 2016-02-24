@@ -398,6 +398,9 @@ ul {
   -webkit-padding-end: 5%;
   /*list-style-type: none;*/ }
 
+figure {
+  text-align: center; }
+
 figure, figure img.maincolumn {
   max-width: 55%;
   -webkit-margin-start: 0;

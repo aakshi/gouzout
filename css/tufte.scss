@@ -233,6 +233,10 @@ ul { width: 45%;
      /*list-style-type: none;*/ }
 
 //li { padding: 0.5em 0; } //vertical padding on list items screws up vertical rhythym
+figure {
+  text-align: center;
+}
+
 
 figure, figure img.maincolumn { max-width: 55%;
          -webkit-margin-start: 0;

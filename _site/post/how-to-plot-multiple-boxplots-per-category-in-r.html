@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gouzout - How to plot multiple boxplots per category in R</title>
+  <meta name="description" content="Boxplots are a great way to explore data and when doing modelling I often want to see how all the variables interact with a single target variable.This is th...">
+  <link rel="stylesheet" href="/css/tufte.css">	
+  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
+  
+    <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
+  
+  <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
+  
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/packery/1.4.3/packery.pkgd.min.js"></script>
+  
+  <link rel="canonical" href="/post/how-to-plot-multiple-boxplots-per-category-in-r">
+  <link rel="alternate" type="application/rss+xml" title="Gouzout" href="/feed.xml" />
+</head>
+
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+    <nav class="group">
+	
+		
+  	
+		
+		    
+		      <a href="/">Posts</a>
+		    
+	    
+  	
+		
+		    
+		      <a href="/css/main.css"></a>
+		    
+	    
+  	
+		
+  	
+	</nav>
+</header>
+    <article class="group">
+      <h1>How to plot multiple boxplots per category in r</h1>
+<p class="subtitle">February 24, 2016</p>
+
+
+<p>Boxplots are a great way to explore data and when doing modelling I often want to see how all the variables interact with a single target variable.</p>
+
+<p>This is the code I use to publish all the Boxplots to a PDF for perusual.</p>
+
+<p><label for="mf-id-1" class="margin-toggle">⊕</label><input type="checkbox" id="mf-id-1" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/posts/how-to-plot-multiple-boxplots-per-category-in-r/boxplot.svg" /><br />Basic Boxplot.</span></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="c1"># Plot all the boxplots :)
+## Can only plot numeric data 
+## Get the name of each numeric column
+</span><span class="n">names</span> <span class="o">&lt;-</span> <span class="n">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">sapply</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">is.numeric</span><span class="p">)])</span>
+<span class="c1">## Save boxplots to PDF
+</span><span class="n">pdf</span><span class="p">(</span><span class="s2">"boxplots.pdf"</span><span class="p">)</span>
+
+<span class="c1">## For each column in names create a boxplot
+</span><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="k">in</span> <span class="n">names</span><span class="p">){</span>
+  <span class="c1">## Create formula for boxplot
+</span>  <span class="c1">## Target is typically a category / factor variable
+</span>  <span class="n">f</span> <span class="o">&lt;-</span> <span class="n">as.formula</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">"Target"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"~"</span><span class="p">))</span>
+  <span class="n">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">boxplot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span><span class="n">ylab</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span><span class="s1">'Target'</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">dev.off</span><span class="p">()</span>
+</code></pre>
+</div>
+
+
+
+
+    </article>
+    <span class="print-footer">How to plot multiple boxplots per category in R - February 24, 2016 - Richard Shaw</span>
+    <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="mailto:richard.shaw -at- bnsly.com"><span class="icon-mail"></span></a></li>    
+    
+      <li>
+        <a href="//www.twitter.com/richshaw"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="//github.com/richshaw"><span class="icon-github"></span></a>
+      </li>
+    
+      <li>
+        <a href="/feed"><span class="icon-feed"></span></a>
+      </li>
+      
+  </ul>
+<div class="credits">
+<span>&copy; 2016 &nbsp;&nbsp;RICHARD SHAW</span></br> <br>
+</div>  
+</footer>
+  </body>
+</html>
