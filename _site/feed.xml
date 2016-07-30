@@ -5,9 +5,51 @@
     <description></description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 29 Jul 2016 00:13:42 -0400</pubDate>
-    <lastBuildDate>Fri, 29 Jul 2016 00:13:42 -0400</lastBuildDate>
+    <pubDate>Sat, 30 Jul 2016 19:24:10 -0400</pubDate>
+    <lastBuildDate>Sat, 30 Jul 2016 19:24:10 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Are we hearing echos?</title>
+        <description>&lt;p&gt;Beyond my own narrative is there any evidence that echo chambers exist? Are echo chambers actually a problem or just a natural extension of a healthy culture?&lt;/p&gt;
+
+&lt;h2 id=&quot;others-stories&quot;&gt;Other’s stories&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The referendum result came as a shock here in Brussels because many of us in the Remain camp probably couldn’t name a single individual who would have voted for Leave. – &lt;cite&gt;&lt;a href=&quot;http://www.martenscentre.eu/blog/brexit-echo-how-break-echo-chamber-effect-political-communication&quot;&gt;Erica Lee&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;theory&quot;&gt;Theory&lt;/h2&gt;
+
+&lt;iframe src=&quot;https://embed-ssl.ted.com/talks/eli_pariser_beware_online_filter_bubbles.html&quot; width=&quot;640&quot; height=&quot;360&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I think, if you take all of these filters together, you take all these algorithms, you get what I call a filter bubble. And your filter bubble is your own personal, unique universe of information that you live in online. And what’s in your filter bubble depends on who you are, and it depends on what you do. But the thing is that you don’t decide what gets in. And more importantly, you don’t actually see what gets edited out. – &lt;cite&gt;&lt;a href=&quot;https://www.ted.com/talks/eli_pariser_beware_online_filter_bubbles&quot;&gt;Eli Pariser&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Homophily limits people’s social worlds in a way that has powerful implications for the information they receive, the attitudes they form, and the interactions they experience. – &lt;cite&gt;&lt;a href=&quot;https://www.researchgate.net/publication/200110353_Birds_of_a_Feather_Homophily_in_Social_Networks&quot;&gt;Miller McPherson, Lynn Smith-Lovin and James Cook&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;data&quot;&gt;Data&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Do echo chambers actually exist on social media? By focusing on how both Italian and US Facebook users relate to two distinct narratives (involving conspiracy theories and science), we offer quantitative evidence that they do. – &lt;cite&gt;&lt;a href=&quot;http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2795110&quot;&gt;Walter Quattrociocchi, Antonio Scala, Cass Sunstein&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Our results show that polarized communities emerge around distinct types of contents and usual consumers of conspiracy news result to be more focused and self-contained on their specific contents – &lt;cite&gt;&lt;a href=&quot;http://journals.plos.org/plosone/article/asset?id=10.1371%2Fjournal.pone.0118093.PDF&quot;&gt;Alessandro Bessi1, Mauro Coletto, George Davidescu, Antonio Scala, Guido Caldarelli, Walter Quattrociocchi&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yes and yes.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 30 Jul 2016 16:16:18 -0400</pubDate>
+        <link>/post/are-we-hearing-echos</link>
+        <guid isPermaLink="true">/post/are-we-hearing-echos</guid>
+        
+        
+      </item>
     
       <item>
         <title>Angry Red Car</title>
@@ -345,104 +387,6 @@ border: 1px solid #DEDEDE;&quot; src=&quot;https://richshaw.github.io/loyaltypro
         <pubDate>Fri, 27 Jun 2014 14:38:43 -0400</pubDate>
         <link>/post/visual-analytics-the-girl-bar-problem-and-brand-positioning</link>
         <guid isPermaLink="true">/post/visual-analytics-the-girl-bar-problem-and-brand-positioning</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>What makes something #beautiful?</title>
-        <description>&lt;p&gt;I think it was in high school, in an English Literature lesson, someone was talking about how “beauty is in the eye of the beholder”, how beauty is an experience of the individual, that anything can be beautiful if someone considers it so. In some ways this is a nice idea, a free and easy way to understand the beauty around us, but is it true?&lt;/p&gt;
-
-&lt;p&gt;After all, if beauty is entirely subjective, a product of individual preference, why is it so consistent? Scarlett Johansson is universally seen as beautiful, as are sunsets, vistas and diamonds.&lt;/p&gt;
-
-&lt;p&gt;To understand how people see beauty today, I analyzed a 1000 pictures &lt;a href=&quot;http://iconosquare.com/tag/beautiful/&quot;&gt;tagged #beautiful on Instagram&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;describing-pictures&quot;&gt;Describing pictures&lt;/h2&gt;
-
-&lt;p&gt;To analyze 1000 pictures by hand is error prone and time consuming. So to get an overview of what people considered beautiful, I tagged the images using a &lt;a href=&quot;http://www.alchemyapi.com/products/features/image-tagging/&quot;&gt;machine vision API created by Alchemy&lt;/a&gt;. The machine vision API works somewhat like facial recognition software. It looks at an image and returns a list of tags, saying what it thinks the image contains. For example, &lt;a href=&quot;http://demo1.alchemyapi.com/images/vision/emaxfpo.jpg&quot;&gt;this image&lt;/a&gt; is 99% likely to contain a cat, 57% likely to contain an animal and so on.&lt;/p&gt;
-
-&lt;p&gt;So what was contained within our 1000 #beautiful images?&lt;/p&gt;
-
-&lt;figure&gt;
-    &lt;figcaption&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/raw/0a7a1dd78bf1882c67fa/&quot;&gt;What is beautiful? Bubble Chart.&lt;/a&gt;&lt;/figcaption&gt;    
-    &lt;img alt=&quot;Bubble chart&quot; src=&quot;/assets/posts/what-makes-something-beautiful/bubble-chart.svg &quot; /&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The bubble chart above shows the number of times each tag occurred. I don’t want to conclude that, as humans, we are a race of narcissists, but we do have a lot of beautiful people, but also some sunsets, sky and sport.&lt;/p&gt;
-
-&lt;p&gt;We can also look at an average of images for different tags to see if there’s any consistency in color and composition of the images.&lt;/p&gt;
-
-&lt;figure class=&quot;fullwidth image-quilt js-packery&quot; data-packery-options=&quot;{ &amp;quot;itemSelector&amp;quot;: &amp;quot;.image-quilt-item&amp;quot;, &amp;quot;gutter&amp;quot;: 0 }&quot;&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful person&quot; src=&quot;/assets/beautiful-average/person.jpg&quot; /&gt;&lt;/div&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful girl&quot; src=&quot;/assets/beautiful-average/girl.jpg&quot; /&gt;&lt;/div&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful model&quot; src=&quot;/assets/beautiful-average/model.jpg&quot; /&gt;&lt;/div&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful sport&quot; src=&quot;/assets/beautiful-average/sport.jpg&quot; /&gt;&lt;/div&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful nature&quot; src=&quot;/assets/beautiful-average/nature.jpg&quot; /&gt;&lt;/div&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful sunset&quot; src=&quot;/assets/beautiful-average/sunset.jpg&quot; /&gt;&lt;/div&gt;
-    &lt;div class=&quot;image-quilt-item&quot;&gt;&lt;img alt=&quot;Average #beautiful cat&quot; src=&quot;/assets/beautiful-average/cat.jpg&quot; /&gt;&lt;/div&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The average images were created by taking the average pixel color, for each pixel across all the images of a tag. Much like numeric averages, average images don’t tell us much about the overall structure of the data but give us a single point of reference for commonalities within the data. In this case the average images give us a feel for the common composition and colors used within the images.&lt;/p&gt;
-
-&lt;p&gt;While the bubble chart and averages tell us about the common tags, it doesn’t tell us anything about how the tags relate to each other. What is related to “people”? What sports are included in “sport”?&lt;/p&gt;
-
-&lt;figure&gt;
-    &lt;figcaption&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/raw/b7f99f539e2a2546ab64/&quot;&gt;What is beautiful? Network Graph.&lt;/a&gt;&lt;/figcaption&gt;
-    &lt;img alt=&quot;Bubble chart&quot; src=&quot;/assets/posts/what-makes-something-beautiful/network-graph.svg &quot; /&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The network graph above shows how the tags fit together. Each circle represents a tag, and a line is draw between tags that are mentioned together. We can see that beautiful flowers include “orchid,” “poppy” and “dandelion” and sports like “football,” “golf” and even “wrestling” have beautiful moments. We can also look at the overall structure of the graph. You’ll see that there are four clusters of circles, one centering on people, one on animals, another on nature and a fourth on buildings (pulled close to nature by the sun and the sky).&lt;/p&gt;
-
-&lt;p&gt;We can combine the data from the bubble chart and the network graph, along with a &lt;a href=&quot;http://arxiv.org/pdf/physics/0602124.pdf&quot;&gt;segmentation&lt;/a&gt; to give us a complete overview of the tags.&lt;/p&gt;
-
-&lt;figure&gt;&lt;figcaption&gt;What is beautiful? Network Graph&lt;/figcaption&gt;&lt;img src=&quot;/assets/beautifulgraph.svg&quot; /&gt;&lt;/figure&gt;
-
-&lt;p&gt;In the network graph above, the size of the circles and text show how many times a tag was used, like in the bubble chart. The lines show which tags are mentioned together, while the thickness of the lines represents how often the tags were mentioned together. The colors show the results of our segmentation. There are clusters of images around beautiful people, animals, flowers, sky and buildings.&lt;/p&gt;
-
-&lt;h2 id=&quot;who-are-the-beautiful-people&quot;&gt;Who are the beautiful people?&lt;/h2&gt;
-
-&lt;p&gt;Pictures of people seem to dominate what people perceive as beautiful. But what makes these people beautiful? Is it their hair? Their eyes? What is it?&lt;/p&gt;
-
-&lt;p&gt;To find out, I recruited a team of humans to analyze the images tagged with “person.” Each analyst had to answer a sequence of questions describing the properties of the images: Does the image contain a person? (The computer could have tagged incorrectly.) How long is their hair? What color is it? And so on.&lt;/p&gt;
-
-&lt;p&gt;The plot below shows an analysis of the different properties of the beautiful people images and how they relate to each other. The properties toward the center of the plot are the ones mentioned most frequently, and the properties that are close to each other tend to appear together.&lt;/p&gt;
-
-&lt;figure class=&quot;fullwidth&quot;&gt;&lt;img src=&quot;/assets/MCA.svg&quot; /&gt;&lt;figcaption&gt;Mulitple Correspondence Analysis Plot&lt;/figcaption&gt;&lt;/figure&gt;
-
-&lt;p&gt;The plot shows us that an image of a person is more likely to be #beautiful if they’re young, white, females with a happy facial expression. The YWFH’s accounted for a full 23% of all images of #beautiful people, significantly higher than any other group. It also doesn’t hurt if you’re a brunette. Brunettes account for 72% of #beautiful people overall, and young, white, females with a happy facial expression and long brunette hair make up 10% of #beautiful people overall.&lt;/p&gt;
-
-&lt;h2 id=&quot;jolie-laide&quot;&gt;Jolie laide&lt;/h2&gt;
-&lt;p&gt;I’m disappointed. I never expected beauty to entirely be beholden to the beholder, but I never expected to find this level of conformity. Almost half of #beautiful pictures on Instagram are of people, and about 1 in 4 of those people photographed display the same features. While typically it’s the media that has promoted a certain standards of beauty, it’s not the media outlets posting these photos.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.businessinsider.com/instagram-demographics-2013-12&quot;&gt;Over 90% of Instagram users or people aged 18-35&lt;/a&gt;. Part of me (the part that watched a lot of Bill Hicks at college, wastes its time watching reruns of House and follows @neinquarterly) wants to conclude the narcissism and conformity displayed on Instagram are a malaise of a generation.&lt;/p&gt;
-
-&lt;p&gt;But that’s it’s not that simple. That conclusion is too broad. Aristotle, Plato, Kant and Locke all failed to develop a definitive definition of beauty because beauty doesn’t have a single definition, but nor is it entirely subjective.&lt;/p&gt;
-
-&lt;p&gt;The best explanations of what make sometime beautiful are relative. &lt;a href=&quot;http://www.amazon.com/gp/product/0199229759/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0199229759&amp;amp;linkCode=as2&amp;amp;tag=richshaw-20&quot;&gt;In Beauty, Roger Scruton&lt;/a&gt; sees beauty as a rational judgment by the individual, that rationality has to draw up experience on the world around them. Similarly, &lt;a href=&quot;http://www.amazon.com/gp/product/0415979927/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=9325&amp;amp;creativeASIN=0415979927&amp;amp;linkCode=as2&amp;amp;tag=richshaw-20&quot;&gt;Crispin Sartwell in Six Names of Beauty&lt;/a&gt; sees beauty defined by the relationship between the observer, the observed and the environment around them.&lt;/p&gt;
-
-&lt;p&gt;With this in mind, the #beautiful people of Instagram seem less malevolent. Uploading a picture to Instagram is a social interaction between the uploader and the other members of Instagram. Social interactions are rarely neutral. They have a purpose.&lt;/p&gt;
-
-&lt;p&gt;For some, Instagram is a game of “likes.” The more “likes” your image gets, the better, and using popular tags like #beautiful can help with that. Others use Instagram as a way to display their perfectly curated life to friends, and #beautiful is a statement of an aspirational self-image.&lt;/p&gt;
-
-&lt;p&gt;Instagram photos are a product of the platform and the sample I used for the research. Instagram is a US-based company and is popular on its home turf. I also sampled images that were tagged #beautiful not &lt;a href=&quot;http://iconosquare.com/tag/precioso/&quot;&gt;#precioso&lt;/a&gt;, &lt;a href=&quot;http://iconosquare.com/tag/belo/&quot;&gt;#belo&lt;/a&gt; or &lt;a href=&quot;http://iconosquare.com/tag/%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4/&quot;&gt;아름다운&lt;/a&gt;. If I had looked at beautiful in different languages, I would have discovered something different.&lt;/p&gt;
-
-&lt;p&gt;While differences between languages wouldn’t be surprising, what is surprising is the amount of homogeneity within our US leading, english tagged #beautiful images.&lt;/p&gt;
-
-&lt;p&gt;So was suffering through high school English literature worth it? Is “beauty is in the eye of the beholder”? If it is, then with certain people in certain places a lot of us look through the same eye.&lt;/p&gt;
-
-&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/0a7a1dd78bf1882c67fa&quot;&gt;Bubble chart code&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/b7f99f539e2a2546ab64&quot;&gt;Network graph code&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bl.ocks.org/richshaw/raw/187f2f6df9b3f5ed55b8/&quot;&gt;Pretty tables&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://drive.google.com/folderview?id=0B268p6viJlBMaUxmUlF6TDZiOUU&amp;amp;usp=sharing&quot;&gt;Data&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Sun, 15 Jun 2014 19:20:00 -0400</pubDate>
-        <link>/post/what-makes-something-beautiful</link>
-        <guid isPermaLink="true">/post/what-makes-something-beautiful</guid>
         
         
       </item>
